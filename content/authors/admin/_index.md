@@ -38,7 +38,7 @@ profiles:
   - icon: brands/github
     url: https://github.com/jungseongryong
   - icon: brands/linkedin
-    url: https://www.linkedin.com/in/seongryong-jung-490a3634/
+    url: https://www.linkedin.com/in/seongryong-jung-490a3634b/
   - icon: academicons/google-scholar
     url: https://scholar.google.com/citations?user=a4cgP6AAAAAJ&hl=ko&authuser=3/
     
