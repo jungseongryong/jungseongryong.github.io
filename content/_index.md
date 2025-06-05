@@ -31,6 +31,17 @@ sections:
           position: center
           parallax: false
   - block: collection
+    id: papers
+    content:
+      title: Featured Publications
+      filters:
+        folders:
+          - publication
+        featured_only: true
+    design:
+      view: article-grid
+      columns: 2
+  - block: collection
     content:
       title: Recent Publications
       text: ""
@@ -100,4 +111,3 @@ sections:
         css_class: "bg-primary-700"
         css_style: ""
 ---
-
