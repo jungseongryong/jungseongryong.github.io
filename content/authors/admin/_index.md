@@ -39,23 +39,6 @@ profiles:
     url: https://www.linkedin.com/in/seongryong-jung-490a3634b/
   - icon: academicons/google-scholar
     url: https://scholar.google.com/citations?user=a4cgP6AAAAAJ&hl=en
-    
-# profiles:
-#  - icon: at-symbol
-    url: 'mailto:your-email@example.com'
-    label: E-mail Me
-#  - icon: brands/x
-    url: https://twitter.com/GetResearchDev
-#  - icon: brands/instagram
-    url: https://www.instagram.com/
-#  - icon: brands/github
-    url: https://github.com/gcushen
-#  - icon: brands/linkedin
-    url: https://www.linkedin.com/
-#  - icon: academicons/google-scholar
-    url: https://scholar.google.com/
-#  - icon: academicons/orcid
-    url: https://scholar.google.com/citations?user=a4cgP6AAAAAJ&hl=en
 
 interests:
   - Efficient AI
