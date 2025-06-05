@@ -80,7 +80,6 @@ work:
       Responsibilities include:
       - Research on Compressing Large Language Models via Knowledge Distillation
 
-
 # Skills
 # Add your own SVG icons to `assets/media/icons/`
 skills:
@@ -114,8 +113,6 @@ skills:
         description: ''
         percent: 80
         icon: camera
-
-
 
 languages:
   - name: Korean
