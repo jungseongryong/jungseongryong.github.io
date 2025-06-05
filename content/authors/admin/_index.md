@@ -62,7 +62,7 @@ interests:
   - Large Language Models
 
 education:
-  - area: BSc Artificial Intelligence
+  - area: BEng Artificial Intelligence
     institution: Chung-Ang University
     date_start: 2023-03-01
     date_end: ''
@@ -82,8 +82,8 @@ work:
 
 # Skills
 # Add your own SVG icons to `assets/media/icons/`
-skills:
-  - name: Technical Skills
+# skills:
+#  - name: Technical Skills
     items:
       - name: Python
         description: ''
@@ -97,7 +97,7 @@ skills:
         description: ''
         percent: 40
         icon: circle-stack
-  - name: Hobbies
+#  - name: Hobbies
     color: '#eeac02'
     color_border: '#f0bf23'
     items:
