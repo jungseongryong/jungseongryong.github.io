@@ -28,7 +28,7 @@ summary: ToDi is a token-wise knowledge distillation method that dynamically bal
 tags:
 - Large Language Models
 - Knowledge Distillation
-- Kullback–Leibler divergence
+- 'Kullback–Leibler divergence'
 featured: false
 
 # links:
