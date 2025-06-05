@@ -28,14 +28,14 @@ summary: ToDi is a token-wise knowledge distillation method that dynamically bal
 tags:
 - Large Language Models
 - Knowledge Distillation
-- KL divergence
+- Kullback–Leibler divergence
 featured: false
 
 # links:
 # - name: ""
 #   url: ""
-url_pdf: http://arxiv.org/pdf/1512.04133v1
-url_code: 'https://github.com/HugoBlox/hugo-blox-builder'
+url_pdf: https://arxiv.org/abs/2505.16297
+url_code: 'https://github.com/jungseongryong/ToDi'
 url_dataset: ''
 url_poster: ''
 url_project: ''
