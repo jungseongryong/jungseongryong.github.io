@@ -31,7 +31,6 @@ sections:
           position: center
           parallax: false
   - block: collection
-    id: papers
     content:
       title: Recent Publications
       text: ""
