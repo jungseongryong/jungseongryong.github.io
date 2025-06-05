@@ -40,7 +40,7 @@ sections:
         exclude_featured: false
     design:
       view: citation
-   - block: collection
+  - block: collection
     id: news
     content:
       title: Recent News
