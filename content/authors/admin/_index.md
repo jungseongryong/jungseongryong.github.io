@@ -122,4 +122,4 @@ awards:
 
 ## About Me
 
-Chien Shiung Wu is a professor of artificial intelligence at the Stanford AI Lab. Her research interests include distributed robotics, mobile computing and programmable matter. She leads the Robotic Neurobiology group, which develops self-reconfiguring robots, systems of self-organizing robots, and mobile sensor networks.
+Seongryong Jung is an undergraduate student in the Department of Artificial Intelligence at Chung-Ang University. His research focuses on knowledge distillation and compressing large language models to enable high-performance inference on resource-constrained hardware.
