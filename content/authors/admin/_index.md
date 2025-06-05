@@ -39,6 +39,7 @@ profiles:
     url: https://www.linkedin.com/in/seongryong-jung-490a3634b/
   - icon: academicons/google-scholar
     url: https://scholar.google.com/citations?user=a4cgP6AAAAAJ&hl=en
+    
 # profiles:
 #  - icon: at-symbol
     url: 'mailto:your-email@example.com'
@@ -54,7 +55,7 @@ profiles:
 #  - icon: academicons/google-scholar
     url: https://scholar.google.com/
 #  - icon: academicons/orcid
-    url: https://orcid.org/
+    url: https://scholar.google.com/citations?user=a4cgP6AAAAAJ&hl=en
 
 interests:
   - Efficient AI
