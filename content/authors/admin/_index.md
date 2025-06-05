@@ -33,7 +33,8 @@ profiles:
   - icon: at-symbol
     url: 'mailto:jungsr1116@cau.ac.kr'
     label: E-mail Me
-  - icon: brands/x
+
+#  - icon: brands/x
     url: https://twitter.com/GetResearchDev
   - icon: brands/github
     url: https://github.com/jungseongryong
