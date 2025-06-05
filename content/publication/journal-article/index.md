@@ -1,5 +1,5 @@
 ---
-title: "An example journal article"
+title: "ToDi: Token-wise Distillation via Fine-Grained Divergence Control"
 authors:
 - admin
 - Suwan Yoon
@@ -26,7 +26,9 @@ abstract: ""
 summary: ToDi is a token-wise knowledge distillation method that dynamically balances Forward and Reverse KL divergence based on prediction discrepancies, enabling fine-grained alignment between teacher and student models and outperforming existing approaches on instruction-following tasks.
 
 tags:
-- Source Themes
+- Large Language Models
+- Knowledge Distillation
+- KL divergence
 featured: false
 
 # links:
@@ -63,12 +65,5 @@ projects: []
 slides: example
 ---
 
-{{% callout note %}}
-Click the *Cite* button above to demo the feature to enable visitors to import publication metadata into their reference management software.
-{{% /callout %}}
-
-{{% callout note %}}
-Create your slides in Markdown - click the *Slides* button to check out the example.
-{{% /callout %}}
 
 Large language models (LLMs) offer impressive performance but are impractical for resource-constrained deployment due to high latency and energy consumption. Knowledge distillation (KD) addresses this by transferring knowledge from a large teacher to a smaller student model. However, conventional KD, notably approaches like Forward KL (FKL) and Reverse KL (RKL), apply uniform divergence loss across the entire vocabulary, neglecting token-level prediction discrepancies. By investigating these representative divergences via gradient analysis, we reveal that FKL boosts underestimated tokens, while RKL suppresses overestimated ones, showing their complementary roles. Based on this observation, we propose Token-wise Distillation (ToDi), a novel method that adaptively combines FKL and RKL per token using a sigmoid-based weighting function derived from the teacher-student probability log-ratio. ToDi dynamically emphasizes the appropriate divergence for each token, enabling precise distribution alignment. We demonstrate that ToDi consistently outperforms recent distillation baselines using uniform or less granular strategies across instruction-following benchmarks. Extensive ablation studies and efficiency analysis further validate ToDi's effectiveness and practicality.
