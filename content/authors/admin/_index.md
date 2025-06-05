@@ -25,8 +25,8 @@ role: Undergraduate Student
 # Organizations/Affiliations to display in Biography blox
 organizations:
   - name: Chung-Ang University
-    url: https://openai.com/
-
+    url: https://neweng.cau.ac.kr/index.do
+    
 # Social network links
 # Need to use another icon? Simply download the SVG icon to your `assets/media/icons/` folder.
 profiles:
