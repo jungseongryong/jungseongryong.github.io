@@ -20,7 +20,7 @@ superuser: true
 highlight_name: true
 
 # Role/position/tagline
-role: Chief Scientist
+role: Undergraduate Student
 
 # Organizations/Affiliations to display in Biography blox
 organizations:
@@ -68,8 +68,8 @@ education:
     date_start: 2023-03-01
     date_end: ''
     summary: |
-      GPA: 4.34/4.5
-      Class Rank: 1/59
+      - GPA: 4.34/4.5
+      - Class Rank: 1/59
 work:
   - position: Director of Cloud Infrastructure
     company_name: GenCoin
