@@ -6,7 +6,7 @@ authors:
 - DongGeon Kim
 - Hwanhee Lee
 date: "2025-05-22T06:51:16Z"    # arXiv 첫 제출(v1) 날짜 (UTC)
-doi: "10.48550/arXiv.2505.16297" # arXiv DOI
+doi: "" # arXiv DOI
 
 # Schedule page publish date (NOT publication's date).
 publishDate: "2025-05-22T00:00:00Z"
@@ -46,7 +46,7 @@ url_video: ''
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder. 
 image:
-  caption: 'Image credit: [**Unsplash**](https://unsplash.com/photos/jdD8gXaTZsc)'
+  caption: ''
   focal_point: ""
   preview_only: false
 
