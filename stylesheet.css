@@ -146,6 +146,27 @@ h2 {
   color: #666;
 }
 
+.entry {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 4px;
+}
+
+.entry-meta {
+  font-size: 13px;
+  color: #666;
+  white-space: nowrap;
+  margin-left: 16px;
+}
+
+.entry-detail {
+  font-size: 13px;
+  color: #444;
+  margin-bottom: 14px;
+  padding-left: 2px;
+}
+
 .oral {
   color: #c00000;
   font-weight: 700;
