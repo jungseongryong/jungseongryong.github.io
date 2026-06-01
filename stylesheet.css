@@ -134,6 +134,20 @@ span.highlight {
   background-color: #ffffd0;
 }
 
+.paperthumb {
+  width: 160px;
+  height: 110px;
+  border: 1px solid #d6d6d6;
+  border-radius: 8px;
+  background: #f7f7f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+  font-size: 24px;
+  font-weight: 700;
+}
+
 .colored-box {
     color: black;
     padding: 20px;
