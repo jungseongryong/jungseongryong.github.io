@@ -111,21 +111,20 @@ h2 {
 
 .intro-photo {
   padding: 2.5%;
-  width: 34%;
-  max-width: 34%;
+  width: 37%;
+  max-width: 37%;
   vertical-align: middle;
 }
 
 .intro-copy {
   padding: 2.5%;
-  width: 66%;
+  width: 63%;
   vertical-align: middle;
 }
 
 .profile-photo {
   width: 100%;
-  max-width: 220px;
-  aspect-ratio: 1;
+  max-width: 100%;
   object-fit: cover;
   border-radius: 14px;
   display: block;
