@@ -131,6 +131,21 @@ h2 {
   display: block;
 }
 
+.news-list {
+  margin: 12px 0 0;
+  padding-left: 18px;
+}
+
+.news-list li {
+  margin: 6px 0;
+  line-height: 1.45;
+}
+
+.period {
+  font-size: 12px;
+  color: #666;
+}
+
 .one {
   width: 160px;
   height: 160px;
