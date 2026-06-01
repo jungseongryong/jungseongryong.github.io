@@ -146,8 +146,13 @@ h2 {
   color: #666;
 }
 
-.award {
+.oral {
   color: #c00000;
+  font-weight: 700;
+}
+
+.award {
+  color: #b8860b;
   font-weight: 700;
 }
 
