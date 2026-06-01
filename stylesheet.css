@@ -147,7 +147,7 @@ h2 {
 }
 
 .edu-item {
-  margin-top: 16px;
+  margin-top: 20px;
 }
 
 .edu-header {
@@ -155,6 +155,13 @@ h2 {
   justify-content: space-between;
   align-items: baseline;
   font-size: 14px;
+  font-weight: 700;
+}
+
+.edu-location {
+  font-size: 13px;
+  color: #555;
+  margin-top: 1px;
 }
 
 .edu-date {
@@ -162,10 +169,11 @@ h2 {
   color: #666;
   white-space: nowrap;
   margin-left: 16px;
+  font-weight: normal;
 }
 
 .edu-list {
-  margin: 4px 0 0 0;
+  margin: 5px 0 0 0;
   padding-left: 20px;
   font-size: 13.5px;
   color: #333;
