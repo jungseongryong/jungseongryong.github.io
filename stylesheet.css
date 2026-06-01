@@ -103,10 +103,32 @@ h2 {
 }
 
 .name {
-  padding-top: 20px;
+  padding-top: 0;
   margin: 0;
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
   font-size: 32px;
+}
+
+.intro-photo {
+  padding: 2.5%;
+  width: 34%;
+  max-width: 34%;
+  vertical-align: middle;
+}
+
+.intro-copy {
+  padding: 2.5%;
+  width: 66%;
+  vertical-align: middle;
+}
+
+.profile-photo {
+  width: 100%;
+  max-width: 220px;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 14px;
+  display: block;
 }
 
 .one {
@@ -153,4 +175,32 @@ span.highlight {
     padding: 20px;
     display: inline-block;
     border-radius: 10px;
+}
+
+@media (max-width: 640px) {
+  .intro,
+  .intro tbody,
+  .intro tr,
+  .intro td {
+    display: block;
+    width: auto;
+    max-width: none;
+  }
+
+  .intro-photo {
+    padding: 24px 16px 8px;
+  }
+
+  .intro-copy {
+    padding: 8px 16px 24px;
+  }
+
+  .profile-photo {
+    max-width: 180px;
+    margin: 0 auto;
+  }
+
+  .name {
+    text-align: center;
+  }
 }
