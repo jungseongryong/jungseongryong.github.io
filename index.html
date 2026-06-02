@@ -162,8 +162,9 @@
                 <h2 style="margin-top:24px;">Trajectory</h2>
                 <div style="overflow-x:auto;margin-top:12px;">
                 <svg viewBox="0 0 900 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;min-width:600px;">
-                  <!-- Timeline line -->
-                  <line x1="30" y1="120" x2="870" y2="120" stroke="#999" stroke-width="2"/>
+                  <!-- Timeline line: solid to last point, then dashed -->
+                  <line x1="30" y1="120" x2="675" y2="120" stroke="#999" stroke-width="2"/>
+                  <line x1="675" y1="120" x2="870" y2="120" stroke="#bbb" stroke-width="2" stroke-dasharray="6,5"/>
 
                   <!-- 1: CAU — ABOVE — x=75 -->
                   <line x1="75" y1="120" x2="75" y2="90" stroke="#999" stroke-width="1.5"/>
@@ -200,12 +201,6 @@
                   <text x="675" y="65" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="12" font-weight="700" fill="#222">Research Intern</text>
                   <text x="675" y="50" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="10" fill="#777">Trillion Labs · Gravity</text>
 
-                  <!-- 6: Research Grant — BELOW — x=825 -->
-                  <line x1="825" y1="120" x2="825" y2="150" stroke="#999" stroke-width="1.5"/>
-                  <circle cx="825" cy="120" r="5" fill="#222" stroke="white" stroke-width="2.5"/>
-                  <text x="825" y="165" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="9.5" fill="#aaa">May. 2026</text>
-                  <text x="825" y="181" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="12" font-weight="700" fill="#222">Research Grant</text>
-                  <text x="825" y="197" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="10" fill="#777">Self-Evolving AI</text>
                 </svg>
                 </div>
               </td>
