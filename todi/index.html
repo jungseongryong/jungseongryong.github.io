@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ToDi: Token-wise Distillation via Fine-Grained Divergence Control</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Google Sans', 'Helvetica Neue', Arial, sans-serif;
+      font-size: 16px;
+      color: #222;
+      background: #fff;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header */
+    header {
+      padding: 56px 0 32px;
+      text-align: center;
+    }
+
+    .venue-badge {
+      display: inline-block;
+      background: #1a1a1a;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    .oral-badge {
+      display: inline-block;
+      background: #c00000;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-left: 8px;
+      margin-bottom: 20px;
+    }
+
+    .award-badge {
+      display: inline-block;
+      background: #b8860b;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-left: 8px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 24px;
+      color: #111;
+    }
+
+    .authors {
+      font-size: 15px;
+      margin-bottom: 8px;
+      color: #333;
+    }
+
+    .authors a {
+      color: #1565c0;
+      text-decoration: none;
+    }
+
+    .authors a:hover { text-decoration: underline; }
+
+    .affiliation {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 28px;
+    }
+
+    /* Links */
+    .links {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 0;
+    }
+
+    .links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 20px;
+      border: 1.5px solid #333;
+      border-radius: 24px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #222;
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .links a:hover {
+      background: #222;
+      color: #fff;
+    }
+
+    /* Divider */
+    hr {
+      border: none;
+      border-top: 1px solid #e8e8e8;
+      margin: 40px 0;
+    }
+
+    /* Abstract */
+    section { margin-bottom: 48px; }
+
+    h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: #111;
+    }
+
+    p { color: #333; line-height: 1.75; }
+
+    /* Figures */
+    .figure {
+      margin: 32px 0;
+      text-align: center;
+    }
+
+    .figure img {
+      max-width: 100%;
+      border-radius: 8px;
+      border: 1px solid #eee;
+    }
+
+    .figure .caption {
+      margin-top: 10px;
+      font-size: 13.5px;
+      color: #555;
+      text-align: left;
+      line-height: 1.6;
+    }
+
+    .figure .caption strong { color: #222; }
+
+    /* BibTeX */
+    pre {
+      background: #f6f6f6;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 20px;
+      font-size: 13px;
+      line-height: 1.6;
+      overflow-x: auto;
+      text-align: left;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: #999;
+      padding: 32px 0 48px;
+      border-top: 1px solid #eee;
+    }
+
+    footer a { color: #999; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <div>
+      <span class="venue-badge">EMNLP 2025</span>
+      <span class="oral-badge">Oral Presentation</span>
+      <span class="award-badge">Outstanding Paper Award Finalist</span>
+    </div>
+    <h1>ToDi: Token-wise Distillation via<br>Fine-Grained Divergence Control</h1>
+    <p class="authors">
+      <strong>Seongryong Jung</strong>,
+      <a href="https://scholar.google.com/citations?user=I3tKCUoAAAAJ&hl=en">Suwan Yoon</a>,
+      <a href="https://scholar.google.com/citations?user=dp4vSqkAAAAJ&hl=en">DongGeon Kim</a>,
+      <a href="https://hwanheelee1993.github.io/">Hwanhee Lee</a>
+    </p>
+    <p class="affiliation">Chung-Ang University</p>
+    <div class="links">
+      <a href="https://aclanthology.org/2025.emnlp-main.409/">📄 Paper</a>
+      <a href="https://arxiv.org/abs/2505.16297">📋 arXiv</a>
+      <a href="https://github.com/jungseongryong/ToDi">💻 Code</a>
+    </div>
+  </header>
+
+  <hr>
+
+  <section>
+    <h2>Abstract</h2>
+    <p>
+      Large language models (LLMs) offer impressive performance but are impractical for resource-constrained deployment
+      due to high latency and energy consumption. Knowledge distillation (KD) offers a promising solution, but existing
+      methods apply a fixed divergence objective across all tokens, failing to account for token-level variation in the
+      teacher-student relationship. We propose <strong>ToDi</strong>, which dynamically combines Forward KL and Reverse KL
+      divergences at the token level using sigmoid-based weighting derived from teacher-student probability ratios.
+      This enables precise distribution alignment and consistently outperforms existing distillation approaches on
+      instruction-following benchmarks.
+    </p>
+  </section>
+
+  <section>
+    <h2>Motivation</h2>
+    <div class="figure">
+      <img src="assets/x1.png" alt="Token-wise learning signals for KL-based distillation">
+      <p class="caption">
+        <strong>Figure 1.</strong> Token-wise learning signals for KL-based distillation objectives.
+        Conventional methods apply a fixed divergence across the entire vocabulary, while ToDi dynamically blends
+        Forward and Reverse KL per token based on the teacher–student probability ratio.
+      </p>
+    </div>
+    <div class="figure">
+      <img src="assets/x2.png" alt="Toy example: FKL and RKL gradient behavior">
+      <p class="caption">
+        <strong>Figure 2.</strong> Toy example demonstrating the behavior of FKL and RKL gradients.
+        In regions where p &gt; q, FKL provides stronger gradients; where q &gt; p, RKL provides stronger learning signals.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Method</h2>
+    <div class="figure">
+      <img src="assets/x3.png" alt="Illustration of Token-wise Distillation">
+      <p class="caption">
+        <strong>Figure 3.</strong> Illustration of ToDi. For each vocabulary token, the contributions of FKL and RKL
+        are dynamically combined using a token-specific weight derived from the teacher-student probability ratio.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Results</h2>
+    <div class="figure">
+      <img src="assets/x4.png" alt="GPT-4 pairwise evaluation results">
+      <p class="caption">
+        <strong>Figure 4.</strong> GPT-4 pairwise evaluation of TinyLLaMA models trained with various KD methods
+        on 5,000 UltraChat examples. ToDi consistently outperforms existing baselines.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <h2>BibTeX</h2>
+    <pre>@inproceedings{jung-etal-2025-todi,
+    title     = "{T}o{D}i: Token-wise Distillation via Fine-Grained Divergence Control",
+    author    = "Jung, Seongryong and Yoon, Suwan and Kim, DongGeon and Lee, Hwanhee",
+    booktitle = "Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing",
+    year      = "2025",
+    publisher = "Association for Computational Linguistics",
+    url       = "https://aclanthology.org/2025.emnlp-main.409",
+}</pre>
+  </section>
+
+  <footer>
+    <p>Website template inspired by <a href="https://nerfies.github.io/">Nerfies</a>. Contact: <a href="mailto:seongryongjung@gmail.com">seongryongjung@gmail.com</a></p>
+  </footer>
+</div>
+
+</body>
+</html>
