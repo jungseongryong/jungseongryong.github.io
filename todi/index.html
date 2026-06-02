@@ -225,7 +225,7 @@
       and Reverse KL (RKL), apply uniform divergence loss across the entire vocabulary, neglecting token-level prediction
       discrepancies. By investigating these representative divergences via gradient analysis, we reveal that FKL boosts
       underestimated tokens, while RKL suppresses overestimated ones, showing their complementary roles. Based on this
-      observation, we propose Token-wise Distillation (ToDi), a novel method that adaptively combines FKL and RKL per
+      observation, we propose <strong>Token-wise Distillation (ToDi)</strong>, a novel method that adaptively combines FKL and RKL per
       token using a sigmoid-based weighting function derived from the teacher-student probability log-ratio. ToDi
       dynamically emphasizes the appropriate divergence for each token, enabling precise distribution alignment. We
       demonstrate that ToDi consistently outperforms recent distillation baselines using uniform or less granular
