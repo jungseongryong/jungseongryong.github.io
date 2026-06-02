@@ -326,18 +326,25 @@
     </div>
 
     <p>
-      Beyond automatic metrics, we conduct GPT-4 pairwise evaluations to assess response quality.
-      ToDi achieves statistically significant wins ($p < 0.001$) over all baselines, confirming that
-      token-wise divergence control leads to more human-preferred outputs.
+      To further validate generalizability, we evaluate ToDi across diverse teacher models — GPT2, LLaMA2,
+      OLMo2, Qwen2.5, and Gemma3. ToDi consistently achieves the best ROUGE-L scores across all teacher
+      configurations, demonstrating that token-wise divergence control is robust to different model families
+      and scales.
     </p>
 
     <div class="figure no-shadow">
-      <img src="assets/todi_result2.png" alt="Analysis results">
+      <img src="assets/todi_result2.png" alt="Multi-model results">
       <p class="caption">
-        <strong>Table 2.</strong> Additional analysis including GPT-4 pairwise evaluation and ablation studies.
-        Dynamic token-wise weighting ($\beta=1$) consistently outperforms static and reversed weighting schemes.
+        <strong>Table 2.</strong> ROUGE-L scores across five teacher model configurations.
+        ToDi (Ours) consistently outperforms all baselines regardless of the teacher model used.
       </p>
     </div>
+
+    <p>
+      Beyond automatic metrics, we conduct GPT-4 pairwise evaluations to assess response quality.
+      ToDi achieves statistically significant wins ($p &lt; 0.001$) over all baselines, confirming that
+      token-wise divergence control leads to more human-preferred outputs.
+    </p>
   </section>
 
   <section>
