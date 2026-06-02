@@ -132,6 +132,11 @@
       border: 1px solid #e8e8e8;
       box-shadow: 0 2px 12px rgba(0,0,0,0.06);
     }
+
+    .figure.no-shadow img {
+      box-shadow: none;
+      border: 1px solid #ddd;
+    }
     .caption {
       margin-top: 12px;
       font-size: 13.5px;
@@ -275,7 +280,7 @@
     </p>
 
     <div class="formula-block">
-      $$\alpha_{t,i} = \sigma\!\left(\beta \cdot \log \frac{p(v_i \mid y_{<t}, x)}{q_\theta(v_i \mid y_{<t}, x)}\right)$$
+      $$\alpha_{t,i} = \sigma\!\left(\beta \cdot \log \frac{p(v_i \mid y_{\lt t}, x)}{q_\theta(v_i \mid y_{\lt t}, x)}\right)$$
     </div>
 
     <p>
@@ -311,7 +316,7 @@
       VicunaEval). ToDi consistently achieves the highest ROUGE-L scores across all settings.
     </p>
 
-    <div class="figure">
+    <div class="figure no-shadow">
       <img src="assets/todi_result1.png" alt="Main results">
       <p class="caption">
         <strong>Table 1.</strong> ROUGE-L scores on five instruction-following benchmarks.
@@ -325,7 +330,7 @@
       token-wise divergence control leads to more human-preferred outputs.
     </p>
 
-    <div class="figure">
+    <div class="figure no-shadow">
       <img src="assets/todi_result2.png" alt="Analysis results">
       <p class="caption">
         <strong>Table 2.</strong> Additional analysis including GPT-4 pairwise evaluation and ablation studies.
