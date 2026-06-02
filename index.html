@@ -162,47 +162,56 @@
                 <h2 style="margin-top:24px;">Trajectory</h2>
                 <div style="overflow-x:auto;margin-top:12px;">
                 <svg viewBox="0 0 900 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;min-width:600px;">
-                  <!-- Timeline line -->
-                  <line x1="30" y1="120" x2="870" y2="120" stroke="#bbb" stroke-width="2"/>
+                  <defs>
+                    <linearGradient id="tlGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%"   stop-color="#5b9bd5"/>
+                      <stop offset="40%"  stop-color="#7b72c8"/>
+                      <stop offset="70%"  stop-color="#9b52b8"/>
+                      <stop offset="100%" stop-color="#7b3090"/>
+                    </linearGradient>
+                  </defs>
 
-                  <!-- 1: CAU — ABOVE — x=75 -->
-                  <line x1="75" y1="120" x2="75" y2="90" stroke="#bbb" stroke-width="1.5"/>
-                  <circle cx="75" cy="120" r="5" fill="#222" stroke="white" stroke-width="2.5"/>
+                  <!-- Timeline line -->
+                  <line x1="30" y1="120" x2="870" y2="120" stroke="url(#tlGrad)" stroke-width="2"/>
+
+                  <!-- 1: CAU — ABOVE — x=75 — #5b9bd5 -->
+                  <line x1="75" y1="120" x2="75" y2="90" stroke="#5b9bd5" stroke-width="1.5"/>
+                  <circle cx="75" cy="120" r="5" fill="#5b9bd5" stroke="white" stroke-width="2.5"/>
                   <text x="75" y="80" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="9.5" fill="#aaa">Mar. 2023</text>
                   <text x="75" y="65" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="12" font-weight="700" fill="#222">B.S. in AI</text>
                   <text x="75" y="50" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="10" fill="#777">Chung-Ang University</text>
 
-                  <!-- 2: DMT Labs — BELOW — x=225 -->
-                  <line x1="225" y1="120" x2="225" y2="150" stroke="#bbb" stroke-width="1.5"/>
-                  <circle cx="225" cy="120" r="5" fill="#222" stroke="white" stroke-width="2.5"/>
+                  <!-- 2: DMT Labs — BELOW — x=225 — #6d84ce -->
+                  <line x1="225" y1="120" x2="225" y2="150" stroke="#6d84ce" stroke-width="1.5"/>
+                  <circle cx="225" cy="120" r="5" fill="#6d84ce" stroke="white" stroke-width="2.5"/>
                   <text x="225" y="165" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="9.5" fill="#aaa">Mar. 2025</text>
                   <text x="225" y="181" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="12" font-weight="700" fill="#222">Research Intern</text>
                   <text x="225" y="197" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="10" fill="#777">DMT Labs · ToDi</text>
 
                   <!-- 3: EMNLP — ABOVE — x=375 — GOLD -->
-                  <line x1="375" y1="120" x2="375" y2="90" stroke="#bbb" stroke-width="1.5"/>
-                  <circle cx="375" cy="120" r="7" fill="#b8860b" stroke="white" stroke-width="2.5"/>
+                  <line x1="375" y1="120" x2="375" y2="90" stroke="#b8860b" stroke-width="1.5"/>
+                  <circle cx="375" cy="120" r="5" fill="#b8860b" stroke="white" stroke-width="2.5"/>
                   <text x="375" y="80" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="9.5" fill="#b8860b">Aug. 2025</text>
                   <text x="375" y="65" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="12" font-weight="700" fill="#b8860b">EMNLP 2025</text>
-                  <text x="375" y="50" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="10" fill="#b8860b">Award Finalist</text>
+                  <text x="375" y="50" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="9" fill="#b8860b">Outstanding Paper Award Finalist</text>
 
-                  <!-- 4: Tokyo — BELOW — x=525 -->
-                  <line x1="525" y1="120" x2="525" y2="150" stroke="#bbb" stroke-width="1.5"/>
-                  <circle cx="525" cy="120" r="5" fill="#222" stroke="white" stroke-width="2.5"/>
+                  <!-- 4: Tokyo — BELOW — x=525 — #8a60c0 -->
+                  <line x1="525" y1="120" x2="525" y2="150" stroke="#8a60c0" stroke-width="1.5"/>
+                  <circle cx="525" cy="120" r="5" fill="#8a60c0" stroke="white" stroke-width="2.5"/>
                   <text x="525" y="165" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="9.5" fill="#aaa">Oct. 2025</text>
                   <text x="525" y="181" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="12" font-weight="700" fill="#222">Exchange Student</text>
                   <text x="525" y="197" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="10" fill="#777">Tokyo Metropolitan Univ.</text>
 
-                  <!-- 5: Trillion Labs — ABOVE — x=675 -->
-                  <line x1="675" y1="120" x2="675" y2="90" stroke="#bbb" stroke-width="1.5"/>
-                  <circle cx="675" cy="120" r="5" fill="#222" stroke="white" stroke-width="2.5"/>
+                  <!-- 5: Trillion Labs — ABOVE — x=675 — #9448b4 -->
+                  <line x1="675" y1="120" x2="675" y2="90" stroke="#9448b4" stroke-width="1.5"/>
+                  <circle cx="675" cy="120" r="5" fill="#9448b4" stroke="white" stroke-width="2.5"/>
                   <text x="675" y="80" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="9.5" fill="#aaa">Mar. 2026</text>
                   <text x="675" y="65" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="12" font-weight="700" fill="#222">Research Intern</text>
                   <text x="675" y="50" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="10" fill="#777">Trillion Labs · Gravity</text>
 
-                  <!-- 6: Research Grant — BELOW — x=825 -->
-                  <line x1="825" y1="120" x2="825" y2="150" stroke="#bbb" stroke-width="1.5"/>
-                  <circle cx="825" cy="120" r="5" fill="#222" stroke="white" stroke-width="2.5"/>
+                  <!-- 6: Research Grant — BELOW — x=825 — #7b3090 -->
+                  <line x1="825" y1="120" x2="825" y2="150" stroke="#7b3090" stroke-width="1.5"/>
+                  <circle cx="825" cy="120" r="5" fill="#7b3090" stroke="white" stroke-width="2.5"/>
                   <text x="825" y="165" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="9.5" fill="#aaa">May. 2026</text>
                   <text x="825" y="181" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="12" font-weight="700" fill="#222">Research Grant</text>
                   <text x="825" y="197" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="10" fill="#777">Self-Evolving AI</text>
