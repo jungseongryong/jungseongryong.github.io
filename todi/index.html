@@ -219,17 +219,18 @@
   <section>
     <h2>Abstract</h2>
     <p>
-      Large language models (LLMs) offer impressive performance but remain impractical for resource-constrained
-      deployment due to high latency and energy consumption. Knowledge distillation (KD) is a promising compression
-      technique, yet existing methods apply a <em>fixed</em> divergence objective uniformly across all tokens —
-      ignoring the rich token-level variation in how a student model relates to its teacher.
-    </p>
-    <p>
-      We propose <strong>ToDi</strong> (<strong>To</strong>ken-wise <strong>Di</strong>stillation), which dynamically
-      combines Forward KL (FKL) and Reverse KL (RKL) divergences at the token level. Using a sigmoid-based weighting
-      function derived from the teacher-student probability ratio, ToDi applies FKL where the student underestimates
-      the teacher and RKL where it overestimates — achieving precise, token-adaptive distribution alignment.
-      ToDi consistently outperforms existing distillation methods across instruction-following benchmarks.
+      Large language models (LLMs) offer impressive performance but are impractical for resource-constrained deployment
+      due to high latency and energy consumption. Knowledge distillation (KD) addresses this by transferring knowledge
+      from a large teacher to a smaller student model. However, conventional KD, notably approaches like Forward KL (FKL)
+      and Reverse KL (RKL), apply uniform divergence loss across the entire vocabulary, neglecting token-level prediction
+      discrepancies. By investigating these representative divergences via gradient analysis, we reveal that FKL boosts
+      underestimated tokens, while RKL suppresses overestimated ones, showing their complementary roles. Based on this
+      observation, we propose Token-wise Distillation (ToDi), a novel method that adaptively combines FKL and RKL per
+      token using a sigmoid-based weighting function derived from the teacher-student probability log-ratio. ToDi
+      dynamically emphasizes the appropriate divergence for each token, enabling precise distribution alignment. We
+      demonstrate that ToDi consistently outperforms recent distillation baselines using uniform or less granular
+      strategies across instruction-following benchmarks. Extensive ablation studies and efficiency analysis further
+      validate ToDi's effectiveness and practicality.
     </p>
   </section>
 
