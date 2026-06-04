@@ -94,13 +94,22 @@
                 <a href="https://aclanthology.org/2025.emnlp-main.409/">paper</a> /
                 <a href="https://arxiv.org/abs/2505.16297">arXiv</a> /
                 <a href="https://github.com/jungseongryong/ToDi">code</a> /
-                <a href="https://scholar.google.com/citations?user=a4cgP6AAAAAJ&hl=en">cited by <span id="citation-count">–</span></a>
+                <a href="https://scholar.google.com/citations?user=a4cgP6AAAAAJ&hl=en">cited by <span id="citation-count">10</span></a> /
+                <a href="javascript:void(0)" onclick="var b=document.getElementById('todi-bibtex');b.style.display=b.style.display==='none'?'block':'none'">bibtex</a>
                 <script>
                   fetch('https://api.semanticscholar.org/graph/v1/paper/arXiv:2505.16297?fields=citationCount')
                     .then(r => r.json())
-                    .then(d => { document.getElementById('citation-count').textContent = d.citationCount ?? '–'; })
+                    .then(d => { if(d.citationCount != null) document.getElementById('citation-count').textContent = d.citationCount; })
                     .catch(() => {});
                 </script>
+                <pre id="todi-bibtex" style="display:none;margin-top:8px;background:#f6f6f6;border:1px solid #e0e0e0;border-radius:6px;padding:12px;font-size:11px;line-height:1.6;text-align:left;">@inproceedings{jung-etal-2025-todi,
+  title     = "{T}o{D}i: Token-wise Distillation via Fine-Grained Divergence Control",
+  author    = "Jung, Seongryong and Yoon, Suwan and Kim, DongGeon and Lee, Hwanhee",
+  booktitle = "Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing",
+  year      = "2025",
+  publisher = "Association for Computational Linguistics",
+  url       = "https://aclanthology.org/2025.emnlp-main.409",
+}</pre>
               </td>
             </tr>
           </tbody></table>
