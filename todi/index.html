@@ -189,9 +189,55 @@
       padding: 28px 0 48px;
     }
     footer a { color: #aaa; }
+
+    /* ── Navbar ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #e8e8e8;
+      padding: 0 28px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 0;
+      margin: 0 auto;
+      max-width: 860px;
+      padding: 0;
+    }
+
+    nav ul li a {
+      display: block;
+      padding: 14px 18px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #555;
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    nav ul li a:hover {
+      color: #111;
+      border-bottom: 2px solid #111;
+    }
   </style>
 </head>
 <body>
+
+<nav>
+  <ul>
+    <li><a href="#abstract">Abstract</a></li>
+    <li><a href="#motivation">Motivation</a></li>
+    <li><a href="#method">Method</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#bibtex">BibTeX</a></li>
+  </ul>
+</nav>
 
 <header>
   <div class="badges">
@@ -216,7 +262,7 @@
 
 <div class="container">
 
-  <section>
+  <section id="abstract">
     <h2>Abstract</h2>
     <p>
       Large language models (LLMs) offer impressive performance but are impractical for resource-constrained deployment
@@ -234,7 +280,7 @@
     </p>
   </section>
 
-  <section>
+  <section id="motivation">
     <h2>Motivation</h2>
     <p>
       Conventional knowledge distillation methods apply either Forward KL (FKL) or Reverse KL (RKL) uniformly
@@ -273,7 +319,7 @@
     </div>
   </section>
 
-  <section>
+  <section id="method">
     <h2>Method</h2>
     <p>
       ToDi adaptively combines FKL and RKL at the token level using a sigmoid-based weighting function.
@@ -309,7 +355,7 @@
     </div>
   </section>
 
-  <section>
+  <section id="results">
     <h2>Results</h2>
     <p>
       We evaluate ToDi on two student-teacher pairs — GPT2-120M distilled from GPT2-1.5B, and TinyLLaMA-1.1B
@@ -356,7 +402,7 @@
     </div>
   </section>
 
-  <section>
+  <section id="bibtex">
     <h2>BibTeX</h2>
     <pre>@inproceedings{jung-etal-2025-todi,
     title     = "{T}o{D}i: Token-wise Distillation via Fine-Grained Divergence Control",
