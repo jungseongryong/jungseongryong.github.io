@@ -80,26 +80,26 @@ th,
 tr,
 p,
 a {
-  font-family: 'Noto Sans', 'Google Sans', sans-serif;
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
   font-size: 14px;
 }
 
 strong {
-  font-family: 'Noto Sans', 'Google Sans', sans-serif;
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
   font-size: 14px;
 }
 
 h2 {
   margin: 0;
   font-weight: normal;
-  font-family: 'Noto Sans', 'Google Sans', sans-serif;
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
   font-size: 22px;
   padding-bottom: 6px;
   border-bottom: 1px solid #e8e8e8;
 }
 
 .papertitle {
-  font-family: 'Noto Sans', 'Google Sans', sans-serif;
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
   font-size: 14px;
   font-weight: 700;
 }
@@ -107,7 +107,7 @@ h2 {
 .name {
   padding-top: 0;
   margin: 0;
-  font-family: 'Noto Sans', 'Google Sans', sans-serif;
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
   font-size: 32px;
 }
 
@@ -203,7 +203,7 @@ h2 {
   font-weight: 700;
   color: #111;
   margin: 0 0 3px 0;
-  font-family: 'Noto Sans', 'Google Sans', sans-serif;
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
 }
 
 .cv-item-org {
