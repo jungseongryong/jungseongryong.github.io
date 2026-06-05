@@ -201,12 +201,26 @@
       padding: 0 28px;
     }
 
+    nav .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    nav .nav-logo {
+      font-size: 15px;
+      font-weight: 700;
+      color: #111;
+      text-decoration: none;
+    }
+
     nav ul {
       list-style: none;
       display: flex;
       gap: 0;
-      margin: 0 auto;
-      max-width: 860px;
+      margin: 0;
       padding: 0;
     }
 
@@ -230,13 +244,16 @@
 <body>
 
 <nav>
-  <ul>
-    <li><a href="#abstract">Abstract</a></li>
-    <li><a href="#motivation">Motivation</a></li>
-    <li><a href="#method">Method</a></li>
-    <li><a href="#results">Results</a></li>
-    <li><a href="#bibtex">BibTeX</a></li>
-  </ul>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">ToDi</a>
+    <ul>
+      <li><a href="#abstract">Abstract</a></li>
+      <li><a href="#motivation">Motivation</a></li>
+      <li><a href="#method">Method</a></li>
+      <li><a href="#results">Results</a></li>
+      <li><a href="#bibtex">BibTeX</a></li>
+    </ul>
+  </div>
 </nav>
 
 <header>
