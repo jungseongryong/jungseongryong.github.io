@@ -94,6 +94,8 @@ h2 {
   font-weight: normal;
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
   font-size: 22px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #e8e8e8;
 }
 
 .papertitle {
