@@ -133,6 +133,10 @@ h2 {
   display: block;
 }
 
+.profile-card {
+  width: 100%;
+}
+
 .profile-caption {
   margin: 8px 0 0;
   color: #666;
@@ -309,6 +313,11 @@ span.highlight {
   }
 
   .profile-photo {
+    max-width: 180px;
+    margin: 0;
+  }
+
+  .profile-card {
     max-width: 180px;
     margin: 0 auto;
   }
