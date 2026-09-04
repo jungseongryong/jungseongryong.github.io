@@ -133,6 +133,13 @@ h2 {
   display: block;
 }
 
+.profile-caption {
+  margin: 8px 0 0;
+  color: #666;
+  font-size: 12px;
+  text-align: center;
+}
+
 .news-list {
   margin: 12px 0 0;
   padding-left: 18px;
