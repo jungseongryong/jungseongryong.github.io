@@ -126,9 +126,10 @@ h2 {
 
 .profile-photo {
   width: 100%;
-  max-width: 100%;
+  max-width: 200px;
   height: auto;
   border-radius: 14px;
+  margin: 0 auto;
   display: block;
 }
 
