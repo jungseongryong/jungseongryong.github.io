@@ -284,43 +284,29 @@ span.highlight {
 }
 
 @media (max-width: 640px) {
-  .intro {
-    display: table;
-    width: 100%;
-  }
-
-  .intro tbody {
-    display: table-row-group;
-  }
-
-  .intro tr {
-    display: table-row;
-  }
-
+  .intro,
+  .intro tbody,
+  .intro tr,
   .intro td {
-    display: table-cell;
+    display: block;
+    width: auto;
     max-width: none;
   }
 
   .intro-photo {
-    padding: 20px 10px 16px 16px;
-    width: 100px;
-    max-width: 100px;
+    padding: 24px 16px 8px;
   }
 
   .intro-copy {
-    padding: 20px 16px 16px 10px;
-    width: auto;
+    padding: 8px 16px 24px;
   }
 
   .profile-photo {
-    width: 100px;
-    max-width: 100px;
-    margin: 0;
+    max-width: 180px;
+    margin: 0 auto;
   }
 
   .name {
-    text-align: left !important;
-    font-size: 28px;
+    text-align: center;
   }
 }
