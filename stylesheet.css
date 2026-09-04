@@ -134,7 +134,8 @@ h2 {
 }
 
 .profile-card {
-  width: 100%;
+  width: 95%;
+  margin: 0 auto;
 }
 
 .profile-caption {
