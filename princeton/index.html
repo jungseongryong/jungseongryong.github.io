@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ToDi: Token-wise Distillation via Fine-Grained Divergence Control</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans&display=swap" rel="stylesheet">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+      ]
+    });"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Google Sans', 'Noto Sans', sans-serif;
+      font-size: 16px;
+      color: #222;
+      background: #fff;
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* ── Header ── */
+    header {
+      background: linear-gradient(135deg, #fffde7 0%, #fce4ec 100%);
+      border-bottom: 1px solid #f0d0d8;
+      padding: 52px 28px 44px;
+      text-align: center;
+    }
+
+    .badges { margin-bottom: 22px; }
+
+    .badge {
+      display: inline-block;
+      font-size: 12.5px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin: 4px 4px;
+    }
+    .badge-venue { background: #111; color: #fff; }
+    .badge-oral  { background: #b71c1c; color: #fff; }
+    .badge-award { background: #b8860b; color: #fff; }
+
+    h1 {
+      font-size: 36px;
+      font-weight: 800;
+      line-height: 1.3;
+      color: #111;
+      margin-bottom: 24px;
+      letter-spacing: -0.3px;
+    }
+
+    .authors {
+      font-size: 17px;
+      margin-bottom: 6px;
+      color: #333;
+    }
+    .authors a { color: #1565c0; text-decoration: none; }
+    .authors a:hover { text-decoration: underline; }
+
+    .affiliation {
+      font-size: 14px;
+      color: #777;
+      margin-bottom: 30px;
+    }
+
+    .links {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 22px;
+      background: #111;
+      color: #fff;
+      border-radius: 28px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .links a:hover { background: #333; }
+
+    /* ── Body ── */
+    .body-wrap { padding: 0 28px; }
+
+    section {
+      padding: 48px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    section:last-of-type { border-bottom: none; }
+
+    h2 {
+      font-size: 26px;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 18px;
+      letter-spacing: -0.2px;
+    }
+
+    p {
+      color: #333;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    p:last-child { margin-bottom: 0; }
+
+    /* ── Figures ── */
+    .figure {
+      margin: 32px 0;
+      text-align: center;
+    }
+    .figure img {
+      max-width: 100%;
+      border-radius: 10px;
+      border: 1px solid #e8e8e8;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    .figure.no-shadow img {
+      box-shadow: none;
+      border: 1px solid #ddd;
+    }
+    .caption {
+      margin-top: 12px;
+      font-size: 13.5px;
+      color: #666;
+      text-align: left;
+      line-height: 1.65;
+    }
+    .caption strong { color: #333; }
+
+    /* ── Key Insight box ── */
+    .insight-box {
+      background: #f0f4ff;
+      border-left: 4px solid #1565c0;
+      border-radius: 0 10px 10px 0;
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 15px;
+      color: #1a237e;
+      line-height: 1.75;
+    }
+
+    /* ── Formula block ── */
+    .formula-block {
+      background: #f8f8f8;
+      border: 1px solid #e4e4e4;
+      border-radius: 10px;
+      padding: 20px 28px;
+      margin: 20px 0;
+      text-align: center;
+      overflow-x: auto;
+    }
+
+    /* ── BibTeX ── */
+    pre {
+      background: #f6f6f6;
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      padding: 22px;
+      font-size: 13px;
+      line-height: 1.65;
+      overflow-x: auto;
+      text-align: left;
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: #aaa;
+      padding: 28px 0 48px;
+    }
+    footer a { color: #aaa; }
+
+    /* ── Navbar ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #e8e8e8;
+      padding: 0 28px;
+    }
+
+    nav .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    nav .nav-logo {
+      font-size: 22px;
+      font-weight: 800;
+      text-decoration: none;
+      background: linear-gradient(135deg, #f59e0b, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.3px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 0;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li a {
+      display: block;
+      padding: 14px 18px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #555;
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    nav ul li a:hover {
+      color: #111;
+      border-bottom: 2px solid #111;
+    }
+
+    @media (max-width: 600px) {
+      nav ul { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">ToDi</a>
+    <ul>
+      <li><a href="#abstract">Abstract</a></li>
+      <li><a href="#motivation">Motivation</a></li>
+      <li><a href="#method">Method</a></li>
+      <li><a href="#results">Results</a></li>
+      <li><a href="#bibtex">BibTeX</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header>
+  <div class="badges">
+    <span class="badge badge-venue">EMNLP 2025</span>
+    <span class="badge badge-oral">Oral Presentation</span>
+    <span class="badge badge-award">Outstanding Paper Award Finalist</span>
+  </div>
+  <h1>ToDi: Token-wise Distillation via<br>Fine-Grained Divergence Control</h1>
+  <p class="authors">
+    <a href="https://jungseongryong.github.io/"><strong>Seongryong Jung</strong></a>,
+    <a href="https://scholar.google.com/citations?user=I3tKCUoAAAAJ&hl=en">Suwan Yoon</a>,
+    <a href="https://scholar.google.com/citations?user=dp4vSqkAAAAJ&hl=en">DongGeon Kim</a>,
+    <a href="https://hwanheelee1993.github.io/">Hwanhee Lee</a>
+  </p>
+  <p class="affiliation">Chung-Ang University</p>
+  <div class="links">
+    <a href="https://aclanthology.org/2025.emnlp-main.409/">📄 Paper</a>
+    <a href="https://arxiv.org/abs/2505.16297">📋 arXiv</a>
+    <a href="https://github.com/jungseongryong/ToDi">💻 Code</a>
+  </div>
+</header>
+
+<div class="container">
+
+  <section id="abstract">
+    <h2>Abstract</h2>
+    <p>
+      Large language models (LLMs) offer impressive performance but are impractical for resource-constrained deployment
+      due to high latency and energy consumption. Knowledge distillation (KD) addresses this by transferring knowledge
+      from a large teacher to a smaller student model. However, conventional KD, notably approaches like Forward KL (FKL)
+      and Reverse KL (RKL), apply uniform divergence loss across the entire vocabulary, neglecting token-level prediction
+      discrepancies. By investigating these representative divergences via gradient analysis, we reveal that FKL boosts
+      underestimated tokens, while RKL suppresses overestimated ones, showing their complementary roles. Based on this
+      observation, we propose <strong>Token-wise Distillation (ToDi)</strong>, a novel method that adaptively combines FKL and RKL per
+      token using a sigmoid-based weighting function derived from the teacher-student probability log-ratio. ToDi
+      dynamically emphasizes the appropriate divergence for each token, enabling precise distribution alignment. We
+      demonstrate that ToDi consistently outperforms recent distillation baselines using uniform or less granular
+      strategies across instruction-following benchmarks. Extensive ablation studies and efficiency analysis further
+      validate ToDi's effectiveness and practicality.
+    </p>
+  </section>
+
+  <section id="motivation">
+    <h2>Motivation</h2>
+    <p>
+      Conventional knowledge distillation methods apply either Forward KL (FKL) or Reverse KL (RKL) uniformly
+      across the entire vocabulary at each decoding step. However, FKL and RKL have fundamentally different
+      gradient behaviors that make each one better suited for different token-level situations.
+    </p>
+
+    <div class="figure">
+      <img src="assets/x1.png" alt="Token-wise learning signals">
+      <p class="caption">
+        <strong>Figure 1.</strong> Token-wise learning signals for KL-based distillation objectives.
+        Conventional methods apply a fixed divergence across the entire vocabulary, while ToDi dynamically blends
+        FKL and RKL per token based on the teacher–student probability ratio.
+      </p>
+    </div>
+
+    <div class="insight-box">
+      <strong>Key Insight:</strong>&nbsp; FKL provides strong gradients when the student <em>underestimates</em>
+      the teacher ($p > q$), while RKL delivers strong corrective signals when the student <em>overestimates</em>
+      ($q > p$). No single fixed objective handles both cases optimally.
+    </div>
+
+    <p>
+      Through theoretical gradient analysis, we show that when $p > q_\theta$, FKL produces gradient magnitudes
+      greater than 1, strongly pushing the student upward. Conversely, when $q_\theta > p$, RKL delivers strong
+      corrective signals while FKL provides only weak negative values. This complementary structure motivates a
+      token-level adaptive combination strategy.
+    </p>
+
+    <div class="figure">
+      <img src="assets/x2.png" alt="Toy example: gradient behavior">
+      <p class="caption">
+        <strong>Figure 2.</strong> Toy example demonstrating the gradient behavior of FKL and RKL.
+        In regions where $p > q$, FKL provides stronger learning signals; where $q > p$, RKL takes over.
+      </p>
+    </div>
+  </section>
+
+  <section id="method">
+    <h2>Method</h2>
+    <p>
+      ToDi adaptively combines FKL and RKL at the token level using a sigmoid-based weighting function.
+      For each token position $t$ and vocabulary item $i$, the token-wise weight is computed as:
+    </p>
+
+    <div class="formula-block">
+      $$\alpha_{t,i} = \sigma\!\left(\beta \cdot \log \frac{p(v_i \mid y_{\lt t}, x)}{q_\theta(v_i \mid y_{\lt t}, x)}\right)$$
+    </div>
+
+    <p>
+      When $p > q_\theta$, $\alpha_{t,i}$ exceeds 0.5, placing more weight on FKL. When $q_\theta > p$,
+      $\alpha_{t,i}$ falls below 0.5, shifting emphasis to RKL. The final token-wise distillation loss is:
+    </p>
+
+    <div class="formula-block">
+      $$\mathcal{D}_{\text{ToDi}}^{(t,i)} = \alpha_{t,i} \cdot \mathcal{D}_{\text{FKL}}^{(t,i)} + (1 - \alpha_{t,i}) \cdot \mathcal{D}_{\text{RKL}}^{(t,i)}$$
+    </div>
+
+    <p>
+      A stop-gradient operator is applied to $\alpha_{t,i}$ during backpropagation, ensuring the weights serve
+      purely as adaptive coefficients without interfering with gradient flow. This design maintains the same
+      computational complexity as standard FKL or RKL — $\mathcal{O}(V)$ per token — with no additional overhead.
+    </p>
+
+    <div class="figure">
+      <img src="assets/x3.png" alt="Illustration of ToDi">
+      <p class="caption">
+        <strong>Figure 3.</strong> Illustration of ToDi. For each vocabulary token, FKL and RKL are dynamically
+        combined via a token-specific weight $\alpha_{t,i}$. The weight smoothly increases FKL emphasis when
+        $p > q_\theta$ and shifts to RKL when $q_\theta > p$.
+      </p>
+    </div>
+  </section>
+
+  <section id="results">
+    <h2>Results</h2>
+    <p>
+      We evaluate ToDi on two student-teacher pairs — GPT2-120M distilled from GPT2-1.5B, and TinyLLaMA-1.1B
+      distilled from LLaMA2-7B — across five instruction-following benchmarks (DollyEval, S-NI, UnNI, SelfInst,
+      VicunaEval). ToDi consistently achieves the highest ROUGE-L scores across all settings.
+    </p>
+
+    <div class="figure no-shadow">
+      <img src="assets/todi_result1.png" alt="Main results">
+      <p class="caption">
+        <strong>Table 1.</strong> ROUGE-L scores on five instruction-following benchmarks.
+        ToDi outperforms SFT, FKL, RKL, and AKL baselines under both student-teacher configurations.
+      </p>
+    </div>
+
+    <p>
+      To further validate generalizability, we evaluate ToDi across diverse teacher models — GPT2, LLaMA2,
+      OLMo2, Qwen2.5, and Gemma3. ToDi consistently achieves the best ROUGE-L scores across all teacher
+      configurations, demonstrating that token-wise divergence control is robust to different model families
+      and scales.
+    </p>
+
+    <div class="figure no-shadow">
+      <img src="assets/todi_result2.png" alt="Multi-model results">
+      <p class="caption">
+        <strong>Table 2.</strong> ROUGE-L scores across five teacher model configurations.
+        ToDi (Ours) consistently outperforms all baselines regardless of the teacher model used.
+      </p>
+    </div>
+
+    <p>
+      Beyond automatic metrics, we conduct GPT-4 pairwise evaluations to assess response quality.
+      ToDi achieves statistically significant wins ($p &lt; 0.001$) over all baselines, confirming that
+      token-wise divergence control leads to more human-preferred outputs.
+    </p>
+
+    <div class="figure">
+      <img src="assets/x4.png" alt="GPT-4 pairwise evaluation">
+      <p class="caption">
+        <strong>Figure 4.</strong> GPT-4 pairwise evaluation of TinyLLaMA models trained with various KD methods
+        on 5,000 UnNI examples. Bars show Win/Tie/Lose proportions; ToDi achieves statistically significant wins
+        ($p &lt; 0.001$) over all baselines.
+      </p>
+    </div>
+  </section>
+
+  <section id="bibtex">
+    <h2>BibTeX</h2>
+    <pre>@inproceedings{jung-etal-2025-todi,
+    title     = "{T}o{D}i: Token-wise Distillation via Fine-Grained Divergence Control",
+    author    = "Jung, Seongryong and Yoon, Suwan and Kim, DongGeon and Lee, Hwanhee",
+    booktitle = "Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing",
+    year      = "2025",
+    publisher = "Association for Computational Linguistics",
+    url       = "https://aclanthology.org/2025.emnlp-main.409",
+}</pre>
+  </section>
+
+</div>
+
+<footer>
+  <p>Contact: <a href="mailto:seongryongjung@gmail.com">seongryongjung@gmail.com</a></p>
+</footer>
+
+</body>
+</html>
