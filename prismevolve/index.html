@@ -59,6 +59,7 @@
     .lead { max-width: 760px; margin-bottom: 22px; color: #555; font-size: 15px; }
     .figure { margin: 26px 0 0; text-align: center; }
     .figure img { display: block; max-width: 100%; height: auto; margin: 0 auto; border: 1px solid #e8e8e8; border-radius: 9px; box-shadow: 0 2px 12px rgba(0,0,0,.06); }
+    #framework .figure img { width: min(100%, 680px); }
     .figure figcaption { margin-top: 11px; color: #666; font-size: 13.5px; line-height: 1.65; text-align: left; }
     .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 24px; }
     .result-card { padding: 20px; border: 1px solid #e8e8e8; border-radius: 9px; }
@@ -200,14 +201,9 @@
       </figure>
     </section>
 
-    <aside class="scope">
-      <h2>Scope of evidence</h2>
-      <p>Experiments use CharXiv chart questions, two closely related Qwen3-VL-2B models, disjoint 128-example optimization and validation sets, and a fixed 36-attempt budget. The findings are specific to this setting.</p>
-    </aside>
   </main>
 
   <footer class="container">
-    <span>PRISMEVOLVE · Seongryong Jung · Chung-Ang University</span>
     <a href="report.pdf">Full report (PDF)</a>
   </footer>
 </body>
