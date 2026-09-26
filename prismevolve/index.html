@@ -10,9 +10,10 @@
   <meta property="og:description" content="A controlled study of the optimization loop behind evolving vision-language model inference programs.">
   <meta property="og:url" content="https://jungseongryong.github.io/prismevolve/">
   <link rel="canonical" href="https://jungseongryong.github.io/prismevolve/">
-  <link rel="icon" type="image/svg+xml" href="../favicon-globe.svg">
+  <link rel="icon" type="image/png" href="assets/prismevolve.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -269,6 +270,80 @@
       html { scroll-behavior: auto; }
       *, *::before, *::after { transition-duration: .01ms !important; }
     }
+    /* Align this project page with the centered ToDi paper-page design. */
+    body { background: #fff; color: #222; font-family: 'Google Sans', 'Noto Sans', sans-serif; }
+    .page { width: min(860px, calc(100% - 56px)); }
+    .topbar {
+      position: sticky; top: 0; z-index: 100; height: auto; min-height: 54px;
+      margin: 0 calc((min(860px, calc(100vw - 56px)) - 100vw) / 2);
+      padding: 0 max(28px, calc((100vw - 860px) / 2));
+      background: rgba(255,255,255,.94); backdrop-filter: blur(8px); border-bottom: 1px solid #e8e8e8;
+    }
+    .brand { gap: 8px; color: inherit; }
+    .brand-mark { width: auto; height: auto; border: 0; border-radius: 0; font: 800 22px 'Google Sans', sans-serif; }
+    .brand strong {
+      font: 800 22px 'Google Sans', sans-serif; letter-spacing: -.3px;
+      background: linear-gradient(135deg, #f59e0b, #ec4899);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .top-links { display: flex; align-items: center; list-style: none; }
+    .top-links a { display: block; padding: 15px 10px; color: #555; font-size: 13px; font-weight: 600; text-decoration: none; }
+    .top-links a:hover { color: #111; box-shadow: inset 0 -2px #111; }
+    .back-link { margin-left: 10px; color: #555; }
+    .hero {
+      display: block; position: relative; overflow: hidden; margin: 0 calc((min(860px, calc(100vw - 56px)) - 100vw) / 2);
+      padding: 48px max(28px, calc((100vw - 860px) / 2)) 42px; text-align: center;
+      background: linear-gradient(135deg, #fffde7 0%, #fce4ec 100%); border-bottom: 1px solid #f0d0d8;
+    }
+    .hero-copy { max-width: 100%; margin: 0 auto; }
+    .eyebrow { display: inline-block; margin: 0 0 14px; padding: 5px 14px; border-radius: 20px; background: #111; color: #fff; font: 700 12px 'Google Sans', sans-serif; letter-spacing: .04em; }
+    h1 { max-width: 780px; margin: 0 auto 18px; color: #111; font: 800 clamp(32px, 5vw, 40px)/1.25 'Google Sans', 'Noto Sans', sans-serif; letter-spacing: -.03em; }
+    .hero-deck { max-width: 680px; margin: 0 auto 20px; color: #444; font: 400 16px/1.7 'Google Sans', 'Noto Sans', sans-serif; }
+    .byline { margin-top: 0; font-size: 16px; }
+    .byline a { color: #1565c0; text-decoration: none; }
+    .byline a:hover { text-decoration: underline; }
+    .affiliation { margin-top: 3px; color: #777; font-size: 14px; }
+    .actions { justify-content: center; margin-top: 20px; }
+    .button { min-height: 40px; border-radius: 28px; border-color: #111; background: #111; }
+    .button:hover { border-color: #333; background: #333; }
+    .button.secondary { border-color: #aaa; background: transparent; }
+    .button.secondary:hover { border-color: #111; background: #fff; color: #111; }
+    .hero-art { width: 150px; margin: 24px auto 0; padding: 4px; border-radius: 50%; border-color: #f0d0d8; background: rgba(255,255,255,.58); }
+    .figure-shell { margin-top: 34px; border-radius: 10px; background: #f7f8f5; }
+    .figure-head { border-color: #e5e8e2; }
+    .paper-figure { margin: 30px 0 0; text-align: center; }
+    .paper-figure img {
+      display: block; width: 100%; max-width: 100%; height: auto; margin: 0 auto;
+      border: 1px solid #e8e8e8; border-radius: 10px; background: #fff;
+      box-shadow: 0 2px 12px rgba(0,0,0,.06);
+    }
+    .paper-figure figcaption { margin-top: 11px; color: #666; font-size: 13.5px; line-height: 1.65; text-align: left; }
+    .metrics { margin-top: 36px; }
+    section.content-section { padding: 48px 0 0; }
+    .section-heading { display: block; margin-bottom: 18px; padding: 0; border: 0; }
+    .section-kicker { display: block; margin-bottom: 4px; font-size: 11px; }
+    h2 { margin-bottom: 12px; color: #111; font: 700 26px/1.35 'Google Sans', 'Noto Sans', sans-serif; letter-spacing: -.02em; }
+    .section-intro { max-width: 100%; color: #555; font-size: 15px; }
+    .abstract-copy { max-width: 100%; margin: 0; color: #333; font: 16px/1.8 'Google Sans', 'Noto Sans', sans-serif; }
+    .question-card, .result-card { border-radius: 10px; background: #fff; }
+    .caveat { margin-top: 48px; }
+    footer { border-top: 1px solid #eee; margin-top: 36px; }
+    @media (max-width: 760px) {
+      .page { width: calc(100% - 36px); }
+      .topbar { margin: 0 -18px; padding: 0 18px; }
+      .top-links { display: none; }
+      .hero { margin: 0 -18px; padding: 38px 20px 34px; }
+      .hero-art { width: 124px; }
+      .section-heading { display: block; }
+    }
+    @media (max-width: 500px) {
+      .page { width: calc(100% - 30px); }
+      .topbar { margin: 0 -15px; padding: 0 15px; }
+      .hero { margin: 0 -15px; padding: 34px 16px 30px; }
+      h1 { font-size: 32px; }
+      .hero-deck { font-size: 15px; }
+      .metrics { margin-top: 28px; }
+    }
   </style>
 </head>
 <body>
@@ -278,6 +353,12 @@
         <span class="brand-mark">P</span>
         <strong>PRISMEVOLVE</strong>
       </a>
+      <ul class="top-links">
+        <li><a href="#abstract">Abstract</a></li>
+        <li><a href="#questions">Study</a></li>
+        <li><a href="#results">Results</a></li>
+        <li><a href="#findings">Findings</a></li>
+      </ul>
       <a class="back-link" href="../">← Seongryong Jung</a>
     </nav>
 
@@ -374,6 +455,18 @@
           <article class="question-card"><span class="question-number">03 / INITIALIZATION</span><h3>Does a better start evolve better?</h3><p>Baseline, manually optimized, and previously evolved programs begin with different quality and structure.</p></article>
           <article class="question-card"><span class="question-number">04 / EXPERIENCE</span><h3>Which past search is useful?</h3><p>The system reuses selected-parent ancestry or an unrelated archive example as extra mutation context.</p></article>
         </div>
+        <figure class="paper-figure">
+          <img src="assets/manual-optimization.png" alt="Original figure comparing inference backend, response-generation settings, and image resolution for Qwen3-VL-2B models">
+          <figcaption><strong>Manual optimization.</strong> The report compares backend and batching, response structure and generation budget, and image resolution to construct strong starting programs.</figcaption>
+        </figure>
+        <figure class="paper-figure">
+          <img src="assets/policy-genealogies.png" alt="Original program genealogies for Fixed, Greedy, Beam, and FIFO search policies">
+          <figcaption><strong>Search genealogies.</strong> Each policy allocates the same mutation budget differently, determining which candidate programs are explored and inherited.</figcaption>
+        </figure>
+        <figure class="paper-figure">
+          <img src="assets/feedback-trajectories.png" alt="Original accuracy trajectories comparing aggregate and diagnostic feedback for four search policies">
+          <figcaption><strong>Feedback granularity.</strong> Per-question diagnostic feedback produces larger gains for Greedy and Beam than for Fixed and FIFO in these runs.</figcaption>
+        </figure>
       </section>
 
       <section class="content-section" id="results">
@@ -395,6 +488,10 @@
             <p class="result-note">Disjoint validation: 69 → 92 correct answers.</p>
           </article>
         </div>
+        <figure class="paper-figure">
+          <img src="assets/initialization-evolvability.png" alt="Original plots comparing best-so-far accuracy under baseline, manually optimized, and previously evolved initial programs">
+          <figcaption><strong>Initialization and evolvability.</strong> A stronger starting score does not necessarily produce the strongest endpoint; the manual initialization improves further under the tested search policies.</figcaption>
+        </figure>
       </section>
 
       <section class="content-section" id="findings">
@@ -408,6 +505,14 @@
           <article class="finding"><span class="finding-index">C</span><div><h3>Modular starts can be easier to improve</h3><p>A previously evolved program began at 96/128 but reached 100; the manual start grew from 88 to 110.</p></div></article>
           <article class="finding"><span class="finding-index">D</span><div><h3>Relevant memory beats random inspiration</h3><p>Ancestry memory reached 118/128 on the optimization set; archive inspiration did not consistently help.</p></div></article>
         </div>
+        <figure class="paper-figure">
+          <img src="assets/experience-reuse-summary.png" alt="Original chart comparing no reuse, ancestry memory, and archive inspiration for baseline and manually optimized initializations">
+          <figcaption><strong>Search-experience reuse.</strong> Ancestry memory reaches 118/128 in the manually optimized setting, while random archive inspiration does not consistently help.</figcaption>
+        </figure>
+        <figure class="paper-figure">
+          <img src="assets/experience-reuse-trajectories.png" alt="Original best-so-far accuracy trajectories comparing no reuse, ancestry memory, and archive inspiration">
+          <figcaption><strong>Search trajectories.</strong> The full runs show how ancestry memory and archive inspiration affect best-so-far accuracy during the fixed search budget. (Section 6.4)</figcaption>
+        </figure>
       </section>
 
       <aside class="caveat">
