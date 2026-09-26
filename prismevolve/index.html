@@ -60,13 +60,6 @@
     .figure { margin: 26px 0 0; text-align: center; }
     .figure img { display: block; max-width: 100%; height: auto; margin: 0 auto; border: 1px solid #e8e8e8; border-radius: 9px; box-shadow: 0 2px 12px rgba(0,0,0,.06); }
     .figure figcaption { margin-top: 11px; color: #666; font-size: 13.5px; line-height: 1.65; text-align: left; }
-    .metrics { display: grid; grid-template-columns: repeat(4, 1fr); margin: 26px 0 28px; border-top: 1px solid #e7e7e7; border-bottom: 1px solid #e7e7e7; }
-    .metric { padding: 15px 12px 15px 0; }
-    .metric + .metric { padding-left: 14px; border-left: 1px solid #e7e7e7; }
-    .metric-label { display: block; color: #777; font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
-    .metric-value { display: block; color: #111; font-size: 24px; font-weight: 700; }
-    .metric-note { display: block; color: #777; font-size: 11px; }
-
     .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 24px; }
     .result-card { padding: 20px; border: 1px solid #e8e8e8; border-radius: 9px; }
     .result-card h3 { margin: 0 0 4px; font-size: 16px; }
@@ -90,9 +83,6 @@
       header { padding: 36px 18px 32px; }
       h1 { font-size: clamp(30px, 8vw, 38px); }
       section { padding: 36px 0; }
-      .metrics { grid-template-columns: 1fr 1fr; }
-      .metric:nth-child(3) { padding-left: 0; border-left: 0; }
-      .metric:nth-child(n+3) { border-top: 1px solid #e7e7e7; }
       .result-grid { grid-template-columns: 1fr; }
       footer { flex-direction: column; }
     }
@@ -115,14 +105,13 @@
   </nav>
 
   <header id="top">
-    <div class="eyebrow">Agentic Systems · Research Report</div>
+    <div class="eyebrow">Agentic Evolution Systems</div>
     <h1>What Makes Agentic Evolution Work?</h1>
     <p class="deck">A controlled study of the optimization loop behind evolving vision-language model inference programs.</p>
     <p class="authors"><a href="../"><strong>Seongryong Jung</strong></a></p>
     <p class="affiliation">Chung-Ang University</p>
     <div class="actions">
       <a class="button" href="report.pdf">Read the paper</a>
-      <a class="button secondary" href="../">Author homepage</a>
     </div>
   </header>
 
@@ -137,12 +126,6 @@
       <div class="section-label">01 / Experimental setup</div>
       <h2>Build a strong starting program</h2>
       <p class="lead">Before comparing search strategies, the study constructs an interpretable, manually optimized program for each target model. The ablations below choose the inference backend, batching, response format, generation budget, and image resolution that define this starting point.</p>
-      <div class="metrics" aria-label="Study setup">
-        <div class="metric"><span class="metric-label">Mutation budget</span><span class="metric-value">36</span><span class="metric-note">attempts per search</span></div>
-        <div class="metric"><span class="metric-label">Optimization set</span><span class="metric-value">128</span><span class="metric-note">CharXiv examples</span></div>
-        <div class="metric"><span class="metric-label">Validation set</span><span class="metric-value">128</span><span class="metric-note">disjoint examples</span></div>
-        <div class="metric"><span class="metric-label">Target models</span><span class="metric-value">2</span><span class="metric-note">Qwen3-VL-2B variants</span></div>
-      </div>
       <figure class="figure">
         <img src="assets/manual-optimization.png" alt="Plots comparing inference backend, response-generation settings, and image resolution for Qwen3-VL-2B models">
         <figcaption><strong>Manual optimization.</strong> The three panels compare backend and batching, response configuration and output budget, and image resolution. Runtime includes model initialization and evaluation over the 128-example optimization set.</figcaption>
