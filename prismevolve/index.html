@@ -27,7 +27,7 @@
     .nav-inner { display: flex; align-items: center; justify-content: space-between; max-width: 860px; min-height: 54px; margin: 0 auto; }
     .nav-logo {
       color: #111; font-size: 21px; font-weight: 800; letter-spacing: -.4px; text-decoration: none;
-      background: linear-gradient(135deg, #f59e0b, #ec4899); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background: linear-gradient(110deg, #d5a600 0%, #2d8a45 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
     .nav-links { display: flex; list-style: none; }
     .nav-links a, .home-link { display: block; padding: 14px 10px; color: #555; font-size: 13px; font-weight: 600; text-decoration: none; }
@@ -35,9 +35,9 @@
 
     header {
       padding: 48px 24px 42px; text-align: center;
-      background: linear-gradient(135deg, #fffde7 0%, #fce4ec 100%); border-bottom: 1px solid #f0d0d8;
+      background: linear-gradient(120deg, #fff7cf 0%, #e3f1d7 100%); border-bottom: 1px solid #d7e5cb;
     }
-    .eyebrow { display: inline-block; margin-bottom: 15px; padding: 5px 14px; border-radius: 20px; background: #111; color: #fff; font-size: 12px; font-weight: 700; letter-spacing: .04em; }
+    .eyebrow { display: inline-block; margin-bottom: 15px; padding: 5px 14px; border-radius: 20px; background: linear-gradient(110deg, #e4bd36, #58a461); color: #14251b; font-size: 12px; font-weight: 700; letter-spacing: .04em; }
     h1 { max-width: 780px; margin: 0 auto 17px; color: #111; font-size: clamp(32px, 5vw, 40px); font-weight: 800; line-height: 1.25; letter-spacing: -.03em; }
     .deck { max-width: 680px; margin: 0 auto 20px; color: #444; font-size: 16px; }
     .authors { margin-bottom: 3px; color: #333; font-size: 16px; }
@@ -45,8 +45,8 @@
     .authors a:hover { text-decoration: underline; }
     .affiliation { margin-bottom: 21px; color: #777; font-size: 14px; }
     .actions { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
-    .button { display: inline-flex; align-items: center; min-height: 40px; padding: 0 20px; border: 1px solid #111; border-radius: 28px; background: #111; color: #fff; font-size: 14px; font-weight: 600; text-decoration: none; }
-    .button:hover { background: #333; }
+    .button { display: inline-flex; align-items: center; min-height: 40px; padding: 0 20px; border: 1px solid #286d3b; border-radius: 28px; background: #286d3b; color: #fff; font-size: 14px; font-weight: 600; text-decoration: none; }
+    .button:hover { background: #1d572e; }
     .button.secondary { border-color: #aaa; background: transparent; color: #222; }
     .button.secondary:hover { border-color: #111; background: #fff; }
 
@@ -95,6 +95,7 @@
       <a class="nav-logo" href="#top">PRISMEVOLVE</a>
       <ul class="nav-links">
         <li><a href="#abstract">Abstract</a></li>
+        <li><a href="#framework">Framework</a></li>
         <li><a href="#setup">Setup</a></li>
         <li><a href="#search">Search</a></li>
         <li><a href="#results">Results</a></li>
@@ -120,6 +121,16 @@
       <div class="section-label">Overview</div>
       <h2>Abstract</h2>
       <p>LLM-driven code optimization repeatedly mutates, evaluates, and selects programs, but the design choices that make improvements accumulate are not well understood. We introduce PRISMEVOLVE, a controlled framework for studying candidate selection, evaluation feedback, initialization, and reuse of prior search experience in vision-language model inference optimization. Across experiments on Qwen3-VL-2B-Instruct and Qwen3-VL-2B-Thinking, we find that strong evolution depends on selectively propagating promising descendants and giving the search policy feedback it can act on. Initial accuracy alone does not predict evolvability, and lineage-specific memory helps in our setting while random archive inspiration does not consistently help.</p>
+    </section>
+
+    <section id="framework">
+      <div class="section-label">PRISMEVOLVE / Framework</div>
+      <h2>Evolution through a program archive</h2>
+      <p class="lead">At each iteration, the sampler selects programs from the archive, an LLM proposes modifications, and evaluators score the candidates. Their scores and feedback determine which programs are retained and used as inspiration in later rounds.</p>
+      <figure class="figure">
+        <img src="assets/prismevolve.svg" alt="PRISMEVOLVE framework diagram showing the human-defined task and evaluation criteria, prompt sampler, mutation LLM, program archive, and evaluator pool">
+        <figcaption><strong>PRISMEVOLVE framework.</strong> The original project diagram connects prompt sampling, LLM-based mutation, program evaluation, and archive-based reuse.</figcaption>
+      </figure>
     </section>
 
     <section id="setup">
