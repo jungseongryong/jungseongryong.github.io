@@ -59,7 +59,7 @@
     .lead { max-width: 760px; margin-bottom: 22px; color: #555; font-size: 15px; }
     .figure { margin: 26px 0 0; text-align: center; }
     .figure img { display: block; max-width: 100%; height: auto; margin: 0 auto; border: 1px solid #e8e8e8; border-radius: 9px; box-shadow: 0 2px 12px rgba(0,0,0,.06); }
-    #framework .figure img { width: min(100%, 680px); }
+    #method .figure:first-of-type img { width: min(100%, 680px); }
     .figure figcaption { margin-top: 11px; color: #666; font-size: 13.5px; line-height: 1.65; text-align: left; }
     .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 24px; }
     .result-card { padding: 20px; border: 1px solid #e8e8e8; border-radius: 9px; }
@@ -96,11 +96,9 @@
       <a class="nav-logo" href="#top">PRISMEVOLVE</a>
       <ul class="nav-links">
         <li><a href="#abstract">Abstract</a></li>
-        <li><a href="#framework">Framework</a></li>
-        <li><a href="#setup">Setup</a></li>
-        <li><a href="#search">Search</a></li>
+        <li><a href="#motivation">Motivation</a></li>
+        <li><a href="#method">Method</a></li>
         <li><a href="#results">Results</a></li>
-        <li><a href="#experience">Experience</a></li>
       </ul>
       <a class="home-link" href="../">Seongryong Jung</a>
     </div>
@@ -124,29 +122,32 @@
       <p>LLM-driven code optimization repeatedly mutates, evaluates, and selects programs, but the design choices that make improvements accumulate are not well understood. We introduce PRISMEVOLVE, a controlled framework for studying candidate selection, evaluation feedback, initialization, and reuse of prior search experience in vision-language model inference optimization. Across experiments on Qwen3-VL-2B-Instruct and Qwen3-VL-2B-Thinking, we find that strong evolution depends on selectively propagating promising descendants and giving the search policy feedback it can act on. Initial accuracy alone does not predict evolvability, and lineage-specific memory helps in our setting while random archive inspiration does not consistently help.</p>
     </section>
 
-    <section id="framework">
-      <div class="section-label">PRISMEVOLVE / Framework</div>
-      <h2>Evolution through a program archive</h2>
+    <section id="motivation">
+      <div class="section-label">01 / Motivation</div>
+      <h2>What makes evolutionary improvements accumulate?</h2>
+      <p>Agentic optimization can generate many candidate programs, but a mutation only matters if the search can identify it, preserve it, and build on it. This study isolates four design choices that govern that process: candidate selection, evaluation feedback, the starting program, and reuse of prior search experience.</p>
+    </section>
+
+    <section id="method">
+      <div class="section-label">02 / Method</div>
+      <h2>A controlled program-evolution loop</h2>
       <p class="lead">At each iteration, the sampler selects programs from the archive, an LLM proposes modifications, and evaluators score the candidates. Their scores and feedback determine which programs are retained and used as inspiration in later rounds.</p>
       <figure class="figure">
         <img src="assets/prismevolve.svg" alt="PRISMEVOLVE framework diagram showing the human-defined task and evaluation criteria, prompt sampler, mutation LLM, program archive, and evaluator pool">
-        <figcaption><strong>PRISMEVOLVE framework.</strong> The original project diagram connects prompt sampling, LLM-based mutation, program evaluation, and archive-based reuse.</figcaption>
+        <figcaption><strong>PRISMEVOLVE framework.</strong> The task and evaluation criteria guide a loop of prompt sampling, LLM-based mutation, program evaluation, and archive-based reuse.</figcaption>
       </figure>
-    </section>
-
-    <section id="setup">
-      <div class="section-label">01 / Experimental setup</div>
-      <h2>Build a strong starting program</h2>
-      <p class="lead">Before comparing search strategies, the study constructs an interpretable, manually optimized program for each target model. The ablations below choose the inference backend, batching, response format, generation budget, and image resolution that define this starting point.</p>
+      <h3>Establishing the starting point</h3>
+      <p>Before comparing evolutionary strategies, we manually optimize an interpretable program for each target model. The ablations below select its inference backend, batching, response format, generation budget, and image resolution.</p>
       <figure class="figure">
         <img src="assets/manual-optimization.png" alt="Plots comparing inference backend, response-generation settings, and image resolution for Qwen3-VL-2B models">
         <figcaption><strong>Manual optimization.</strong> The three panels compare backend and batching, response configuration and output budget, and image resolution. Runtime includes model initialization and evaluation over the 128-example optimization set.</figcaption>
       </figure>
     </section>
 
-    <section id="search">
-      <div class="section-label">02 / Search design</div>
-      <h2>How the search explores and learns</h2>
+    <section id="results">
+      <div class="section-label">03 / Results</div>
+      <h2>Four factors shape the search</h2>
+      <p class="lead">We vary one part of the loop at a time under a fixed mutation budget, then compare how each choice changes the search trajectory and final program quality.</p>
       <h3>Selection shapes the search tree</h3>
       <p>Fixed, FIFO, Greedy, and Beam use the same mutation budget but choose candidates differently. Greedy repeatedly expands high-scoring programs, while Beam preserves several promising candidates. The genealogy plot shows how these policies allocate attempts and which program lineages are inherited.</p>
       <figure class="figure">
@@ -160,12 +161,8 @@
         <img src="assets/feedback-trajectories.png" alt="Accuracy trajectories comparing aggregate and diagnostic feedback under four search policies">
         <figcaption><strong>Feedback granularity.</strong> Best-so-far accuracy under aggregate feedback (F0) and diagnostic feedback (F1). The reported F1–F0 gain is +10.9 points for Greedy and +1.6 points for FIFO.</figcaption>
       </figure>
-    </section>
-
-    <section id="results">
-      <div class="section-label">03 / Results</div>
-      <h2>Starting quality is not the same as evolvability</h2>
-      <p class="lead">The initialization experiment compares baseline, manually optimized, and previously evolved programs. A higher initial score does not guarantee a larger improvement: under Greedy search, the manual start makes larger gains than the already evolved program.</p>
+      <h3>Initialization: starting quality is not evolvability</h3>
+      <p>The initialization experiment compares baseline, manually optimized, and previously evolved programs. A higher initial score does not guarantee a larger improvement: under Greedy search, the manual start makes larger gains than the already evolved program.</p>
       <figure class="figure">
         <img src="assets/initialization-evolvability.png" alt="Best-so-far accuracy under Greedy and Beam search from baseline, manually optimized, and previously evolved initial programs">
         <figcaption><strong>Initialization and evolvability.</strong> Search trajectories show how the starting program changes both the initial score and the improvement reached within 36 mutation attempts.</figcaption>
@@ -184,12 +181,8 @@
           <div class="score-row"><span>Disjoint validation: manual → evolved</span><strong>69 → 92</strong></div>
         </article>
       </div>
-    </section>
-
-    <section id="experience">
-      <div class="section-label">04 / Search experience</div>
-      <h2>Reuse the lineage, not just any memory</h2>
-      <p class="lead">The reuse experiment compares no additional context, ancestry memory from the selected parent’s lineage, and an unrelated archive example. Ancestry memory reaches 118/128 with the manually optimized start; random archive inspiration does not consistently improve the endpoint.</p>
+      <h3>Search experience: reuse the lineage, not just any memory</h3>
+      <p>The reuse experiment compares no additional context, ancestry memory from the selected parent’s lineage, and an unrelated archive example. Ancestry memory reaches 118/128 with the manually optimized start; random archive inspiration does not consistently improve the endpoint.</p>
       <figure class="figure">
         <img src="assets/experience-reuse-summary.png" alt="Final accuracy comparing no reuse, ancestry memory, and archive inspiration for baseline and manually optimized initializations">
         <figcaption><strong>Search-experience reuse.</strong> Final best-so-far accuracy for the reuse conditions in the baseline and manually optimized settings. Ancestry memory gives the strongest endpoint in the manually optimized condition.</figcaption>
@@ -200,7 +193,6 @@
         <figcaption><strong>Search trajectories.</strong> Best-so-far accuracy over 36 attempts for each reuse condition. These results describe the search-experience experiment in Section 6.4.</figcaption>
       </figure>
     </section>
-
   </main>
 
   <footer class="container">
