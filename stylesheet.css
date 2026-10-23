@@ -104,6 +104,28 @@ h2 {
   font-weight: 700;
 }
 
+.publication-card table {
+  table-layout: fixed;
+}
+
+.publication-card pre {
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+.publication-authors a,
+.publication-authors a:hover {
+  color: #111;
+}
+
+.publication-authors sup.equal-author {
+  font-size: 0.8em;
+  line-height: 0;
+  vertical-align: super;
+}
+
 .name {
   padding-top: 0;
   margin: 0;
