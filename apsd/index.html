@@ -100,12 +100,11 @@
   <section id="motivation">
     <h2>Why Does One Target Fail?</h2>
     <p>Self-distillation turns feedback into token-level supervision by asking the current policy to learn from a feedback-conditioned version of itself. But using that self-teacher as the same target for every rollout overlooks a crucial distinction: whether the student's behavior succeeded.</p>
-    <p>On correct rollouts, the self-teacher can shift probability away from the student's already-correct choice, so matching it directly risks disrupting successful behavior.</p>
     <div class="figure no-shadow">
       <img class="wide" src="assets/Figure2.png" alt="Teacher-student discrepancy in SDPO on correct and incorrect rollouts from LiveCodeBench v6.">
       <p class="caption">Teacher-student discrepancy in SDPO. Direct matching can perturb a correct preference, while the teacher can retain the student's incorrect preference.</p>
     </div>
-    <p>On incorrect rollouts, the self-teacher may retain the same wrong preference as the student, providing too little correction toward a better alternative.</p>
+    <p>On correct rollouts, the self-teacher can shift probability away from the student's already-correct choice, so matching it directly risks disrupting successful behavior. On incorrect rollouts, the self-teacher may retain the same wrong preference as the student, providing too little correction toward a better alternative.</p>
     <div class="insight-box"><strong>Key insight:</strong> preserve behavior on successful rollouts, but apply stronger correction to failed ones. The target should depend on rollout correctness.</div>
   </section>
 
