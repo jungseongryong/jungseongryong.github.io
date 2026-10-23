@@ -38,6 +38,9 @@
     .figure.no-shadow img { border-color: #ddd; border-radius: 4px; box-shadow: none; }
     .figure img.wide { width: 100%; }
     .figure.compact-figure img { width: 78%; max-width: 720px; }
+    .experiment-figures { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin: 22px 0 30px; }
+    .experiment-figures img { display: block; width: 100%; height: auto; border: 1px solid #e8e8e8; border-radius: 8px; }
+    .experiment-figures p { margin: 8px 0 0; color: #666; font-size: 13.5px; line-height: 1.6; }
     .caption { margin-top: 10px; color: #666; font-size: 13.5px; line-height: 1.65; text-align: left; }
     .insight-box { margin: 22px 0; padding: 14px 18px; border-left: 4px solid #1565c0; border-radius: 0 8px 8px 0; background: #f0f4ff; color: #1a237e; font-size: 15px; line-height: 1.75; }
     .proposition { margin: 24px 0 32px; }
@@ -54,6 +57,7 @@
       section { padding: 34px 0; }
       .takeaway { font-size: 17px; }
       .formula-block { padding: 14px 8px; }
+      .experiment-figures { grid-template-columns: 1fr; gap: 14px; }
     }
   </style>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
@@ -83,11 +87,11 @@
   </section>
 
   <section id="overview">
+    <p class="takeaway">APSD adapts the self-distillation target to rollout correctness: preserve successful behavior and push more strongly away from failed behavior.</p>
     <div class="figure compact-figure">
       <img src="assets/apsd_figure1.png" alt="APSD interpolates between student and teacher on correct rollouts and extrapolates beyond the teacher on incorrect rollouts.">
       <p class="caption">APSD interpolates to preserve correct behavior and extrapolates to strengthen correction on incorrect behavior.</p>
     </div>
-    <p class="takeaway">APSD adapts the self-distillation target to rollout correctness: preserve successful behavior and push more strongly away from failed behavior.</p>
   </section>
 
   <section id="motivation">
@@ -135,7 +139,7 @@
   </section>
 
   <section id="results">
-    <h2>Results Across Feedback Settings</h2>
+    <h2>Experiments</h2>
     <p>We evaluate APSD with scalar verifiable rewards (RLVR) and rich textual feedback (RLRF). The paper reports RLVR results on scientific reasoning and tool-use benchmarks, and RLRF results on LiveCodeBench v6 across three Qwen3 model scales.</p>
     <div class="figure no-shadow">
       <img class="wide" src="assets/table1_rlvr.png" alt="RLVR performance across five benchmarks.">
@@ -144,6 +148,33 @@
     <div class="figure no-shadow">
       <img class="wide" src="assets/table2_rlrf.png" alt="RLRF performance on LiveCodeBench v6 across Qwen3 model scales.">
       <p class="caption">RLRF performance on LiveCodeBench v6. APSD achieves the strongest overall results across the three Qwen3 scales.</p>
+    </div>
+
+    <h3>Training Dynamics and Gradient Flow</h3>
+    <p>Across Qwen3 model scales, APSD reaches comparable performance in fewer training steps than SDPO. Preserving gradient flow through the student-dependent target is also important: detaching the target weakens performance.</p>
+    <div class="experiment-figures">
+      <div>
+        <img src="assets/apsd_training_dynamics_balanced.svg" alt="Training accuracy over steps for APSD, SDPO, and GRPO across Qwen3 model scales.">
+        <p>Training accuracy across model scales; shaded regions show variation across three random seeds.</p>
+      </div>
+      <div>
+        <img src="assets/apsd_stopgrad_balanced.svg" alt="Ablation comparing SDPO, APSD with a detached target, and full APSD.">
+        <p>Target-gradient ablation comparing SDPO, APSD with a detached target, and full APSD.</p>
+      </div>
+    </div>
+
+    <h3>Correctness-Dependent Target Control</h3>
+    <p>On LiveCodeBench v6, interpolation improves successful rollouts, while extrapolation provides stronger recovery on unsuccessful ones.</p>
+    <div class="figure no-shadow">
+      <img class="wide" src="assets/table3_control.png" alt="Execution accuracy for student, interpolation, self-teacher, and extrapolation sampling distributions on correct and incorrect rollouts.">
+      <p class="caption">Execution accuracy on regenerated suffixes. Change is measured in percentage points relative to the student distribution.</p>
+    </div>
+
+    <h3>Ablation of Correctness-Specific Components</h3>
+    <p>Interpolation and extrapolation each contribute to APSD, and combining both yields the strongest results across all three model scales.</p>
+    <div class="figure no-shadow">
+      <img class="wide" src="assets/table4_ablation.png" alt="Ablation results comparing GRPO, SDPO, interpolation-only APSD-C, extrapolation-only APSD-I, and full APSD across three Qwen3 scales.">
+      <p class="caption">Ablation results on LiveCodeBench v6 (Avg@4). APSD-C applies interpolation only to correct rollouts; APSD-I applies extrapolation only to incorrect rollouts.</p>
     </div>
   </section>
 
@@ -161,6 +192,5 @@
   </section>
 </main>
 
-<footer>APSD &middot; <a href="https://jungseongryong.github.io/">Seongryong Jung</a> &middot; <a href="https://arxiv.org/abs/2610.25973">arXiv:2610.25973</a></footer>
 </body>
 </html>
