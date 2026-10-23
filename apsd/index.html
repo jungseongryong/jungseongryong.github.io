@@ -37,6 +37,7 @@
     .figure img { max-width: 100%; height: auto; border: 1px solid #e8e8e8; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,.05); }
     .figure.no-shadow img { border-color: #ddd; border-radius: 4px; box-shadow: none; }
     .figure img.wide { width: 100%; }
+    .figure.compact-figure img { width: 78%; max-width: 720px; }
     .caption { margin-top: 10px; color: #666; font-size: 13.5px; line-height: 1.65; text-align: left; }
     .insight-box { margin: 22px 0; padding: 14px 18px; border-left: 4px solid #1565c0; border-radius: 0 8px 8px 0; background: #f0f4ff; color: #1a237e; font-size: 15px; line-height: 1.75; }
     .proposition { margin: 24px 0 32px; }
@@ -78,14 +79,14 @@
 <main class="container">
   <section id="abstract">
     <h2>Abstract</h2>
-    <p>Self-distillation methods improve language models by conditioning the current policy on feedback and using it as a self-teacher. Yet a single teacher-matching target can be poorly suited to both successful and failed rollouts: it may over-correct behavior that is already correct, while providing too little correction for incorrect behavior. We introduce Correctness-Dependent Asymmetric Target Distributions for Self-Distillation Policy Optimization (<strong>APSD</strong>), which constructs targets by reweighting the student distribution with a correctness-dependent power of the self-teacher-to-student probability ratio. For correct rollouts, APSD interpolates between student and self-teacher distributions; for incorrect rollouts, it extrapolates beyond the self-teacher. The resulting objective retains gradients through the student-dependent target. Across reinforcement learning with verifiable rewards and feedback, APSD improves performance over SDPO and reaches comparable performance with fewer training steps.</p>
+    <p>Self-distillation policy optimization provides dense token-level supervision for LLM posttraining through feedback-conditioned self-teachers. However, directly matching the self-teacher can disrupt successful behaviors on correct rollouts while providing insufficient correction on incorrect ones. We propose Asymmetric Policy Optimization via Self-Distillation (<strong>APSD</strong>), which constructs correctness-dependent targets by mixing student and self-teacher distributions: interpolation preserves successful behaviors on correct rollouts, while extrapolation beyond the self-teacher strengthens correction on incorrect ones. We analyze APSD through divergence decomposition, reverse-KL barycentric geometry, and gradient analysis, highlighting the importance of gradient flow through student-dependent targets. Experiments under reinforcement learning with verifiable rewards and rich feedback show that APSD achieves strong overall performance against reinforcement-learning and self-distillation baselines and matches SDPO performance with 2.6× fewer training steps on average across Qwen3 model scales.</p>
   </section>
 
   <section id="overview">
     <p class="takeaway">APSD adapts the self-distillation target to rollout correctness: preserve successful behavior and push more strongly away from failed behavior.</p>
     <div class="figure">
       <img class="wide" src="../images/apsd.png" alt="APSD overview: rollout sampling, correctness-dependent target construction, token-level self-distillation, and analysis.">
-      <p class="caption"><strong>Figure 3.</strong> Overview of APSD: sample rollouts, construct an asymmetric target based on correctness, and optimize token-level self-distillation.</p>
+      <p class="caption">Overview of APSD: sample rollouts, construct an asymmetric target based on correctness, and optimize token-level self-distillation.</p>
     </div>
   </section>
 
@@ -95,13 +96,13 @@
     <p>In the correct example below, the student assigns 99.94% probability to the correct token, while the self-teacher shifts its preference toward an incorrect alternative. Matching the teacher directly could overwrite behavior that already works.</p>
     <div class="figure no-shadow">
       <img class="wide" src="assets/Figure2.png" alt="Teacher-student discrepancy in SDPO on correct and incorrect rollouts from LiveCodeBench v6.">
-      <p class="caption"><strong>Figure 2.</strong> Teacher-student discrepancy in SDPO. Direct matching can perturb a correct preference, while the teacher can retain the student's incorrect preference.</p>
+      <p class="caption">Teacher-student discrepancy in SDPO. Direct matching can perturb a correct preference, while the teacher can retain the student's incorrect preference.</p>
     </div>
     <p>The incorrect example shows the opposite failure: both student and self-teacher strongly prefer the same incorrect token (about 100% and 98.62%, respectively). Matching the teacher as-is may not move the student far enough toward a correct alternative.</p>
     <div class="insight-box"><strong>Key insight:</strong> preserve behavior on successful rollouts, but apply stronger correction to failed ones. The target should depend on rollout correctness.</div>
-    <div class="figure">
+    <div class="figure compact-figure">
       <img src="assets/apsd_figure1.png" alt="APSD interpolates between student and teacher on correct rollouts and extrapolates beyond the teacher on incorrect rollouts.">
-      <p class="caption"><strong>Figure 2.</strong> APSD's correctness-dependent response: interpolate to preserve correct behavior and extrapolate to amplify alternatives for incorrect behavior.</p>
+      <p class="caption">APSD's correctness-dependent response: interpolate to preserve correct behavior and extrapolate to amplify alternatives for incorrect behavior.</p>
     </div>
   </section>
 
@@ -137,12 +138,12 @@
     <h2>Results Across Feedback Settings</h2>
     <p>We evaluate APSD with scalar verifiable rewards (RLVR) and rich textual feedback (RLRF). The paper reports RLVR results on scientific reasoning and tool-use benchmarks, and RLRF results on LiveCodeBench v6 across three Qwen3 model scales.</p>
     <div class="figure no-shadow">
-      <img class="wide" src="assets/table1_rlvr.png" alt="Screenshot of Table 1 from the APSD paper: RLVR performance across five benchmarks.">
-      <p class="caption"><strong>Table 1.</strong> RLVR performance on five benchmarks; the final column reports average accuracy.</p>
+      <img class="wide" src="assets/table1_rlvr.png" alt="RLVR performance across five benchmarks.">
+      <p class="caption">RLVR performance on five benchmarks; the final column reports average accuracy.</p>
     </div>
     <div class="figure no-shadow">
-      <img class="wide" src="assets/table2_rlrf.png" alt="Screenshot of Table 2 from the APSD paper: RLRF performance on LiveCodeBench v6 across Qwen3 model scales.">
-      <p class="caption"><strong>Table 2.</strong> RLRF performance on LiveCodeBench v6. APSD achieves the strongest overall results across the three Qwen3 scales.</p>
+      <img class="wide" src="assets/table2_rlrf.png" alt="RLRF performance on LiveCodeBench v6 across Qwen3 model scales.">
+      <p class="caption">RLRF performance on LiveCodeBench v6. APSD achieves the strongest overall results across the three Qwen3 scales.</p>
     </div>
   </section>
 
