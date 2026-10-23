@@ -18,7 +18,7 @@
     .publication-authors { margin: 1.15rem auto .5rem; }
     .publication-authors a { color: #3273dc; }
     .author-note { margin: .25rem 0 .8rem; color: #555; font-size: .9rem; }
-    .author-affiliations { margin-bottom: 1rem; }
+    .author-affiliations { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
     .author-block { display: inline-block; padding: 0 .12rem; }
     .publication-links { margin-top: 1.15rem; }
     .link-block { display: inline-block; margin: 0 .18rem .4rem; }
@@ -80,7 +80,7 @@
     <div class="columns is-centered has-text-centered"><div class="column is-four-fifths">
       <h2 class="title is-3">Abstract</h2>
       <div class="content has-text-justified">
-        <p>Self-distillation methods improve language models by conditioning the current policy on feedback and using it as a self-teacher. Yet a single teacher-matching target can be poorly suited to both successful and failed rollouts: it may over-correct behavior that is already correct, while providing too little correction for incorrect behavior. We introduce Correctness-Dependent Asymmetric Target Distributions for Self-Distillation Policy Optimization (APSD), which constructs targets by reweighting the student distribution with a correctness-dependent power of the self-teacher-to-student probability ratio. For correct rollouts, APSD interpolates between student and self-teacher distributions; for incorrect rollouts, it extrapolates beyond the self-teacher. The resulting objective retains gradients through the student-dependent target. Across reinforcement learning with verifiable rewards and feedback, APSD improves performance over SDPO and reaches comparable performance with fewer training steps.</p>
+        <p>Self-distillation methods improve language models by conditioning the current policy on feedback and using it as a self-teacher. Yet a single teacher-matching target can be poorly suited to both successful and failed rollouts: it may over-correct behavior that is already correct, while providing too little correction for incorrect behavior. We introduce Correctness-Dependent Asymmetric Target Distributions for Self-Distillation Policy Optimization (<strong>APSD</strong>), which constructs targets by reweighting the student distribution with a correctness-dependent power of the self-teacher-to-student probability ratio. For correct rollouts, APSD interpolates between student and self-teacher distributions; for incorrect rollouts, it extrapolates beyond the self-teacher. The resulting objective retains gradients through the student-dependent target. Across reinforcement learning with verifiable rewards and feedback, APSD improves performance over SDPO and reaches comparable performance with fewer training steps.</p>
       </div>
     </div></div>
   </section>
