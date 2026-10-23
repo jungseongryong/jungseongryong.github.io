@@ -104,15 +104,17 @@
 
   <section id="motivation">
     <h2>Motivation</h2>
-    <p>A feedback-conditioned self-teacher can differ from the student in ways that require different responses. On correct rollouts, matching the teacher directly can disrupt successful behavior. On incorrect rollouts, the teacher may remain too close to the student's failed behavior to provide sufficient correction.</p>
-    <div class="figure">
-      <img src="assets/apsd_figure1.png" alt="APSD interpolates targets for correct rollouts and extrapolates targets for incorrect rollouts.">
-      <p class="caption"><strong>Figure 1.</strong> APSD adapts the distillation target to rollout correctness: interpolation preserves successful behavior, while extrapolation amplifies alternative behavior.</p>
-    </div>
-    <div class="insight-box"><strong>Key insight:</strong> use an interpolated target when the rollout is correct, and an extrapolated target when it is incorrect.</div>
+    <p>Self-distillation turns feedback into token-level supervision by asking the current policy to learn from a feedback-conditioned version of itself. But using that self-teacher as the same target for every rollout overlooks a crucial distinction: whether the student's behavior succeeded.</p>
+    <p>Figure 2 illustrates the mismatch. In the correct example, the student assigns 99.94% probability to the correct token, while the self-teacher shifts its preference toward an incorrect alternative. Matching the teacher directly could therefore overwrite behavior that already works.</p>
     <div class="figure no-shadow">
       <img src="assets/Figure2.png" alt="Teacher-student discrepancy on correct and incorrect rollouts in SDPO.">
-      <p class="caption"><strong>Figure 2.</strong> Teacher-student discrepancy in SDPO on LiveCodeBench v6, showing how direct matching can perturb a correct choice or retain an incorrect one.</p>
+      <p class="caption"><strong>Figure 2.</strong> Teacher-student discrepancy in SDPO on LiveCodeBench v6. The examples show a teacher perturbing a correct token preference and retaining an incorrect one.</p>
+    </div>
+    <p>The incorrect example exposes the opposite problem: both student and self-teacher strongly prefer the same incorrect token (about 100% and 98.62%, respectively). Matching the teacher as-is may not move the student far enough toward a correct alternative.</p>
+    <div class="insight-box"><strong>Key insight:</strong> successful behavior needs to be preserved, while failed behavior needs a stronger corrective push. The target should depend on rollout correctness, not remain fixed across both cases.</div>
+    <div class="figure">
+      <img src="assets/apsd_figure1.png" alt="APSD interpolates targets for correct rollouts and extrapolates targets for incorrect rollouts.">
+      <p class="caption"><strong>Figure 1.</strong> APSD responds to this mismatch with interpolation for correct rollouts and extrapolation for incorrect rollouts.</p>
     </div>
   </section>
 
