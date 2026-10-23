@@ -1,154 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Correctness-Dependent Asymmetric Target Distributions for Self-Distillation Policy Optimization.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Correctness-dependent asymmetric targets for self-distillation policy optimization.">
   <meta property="og:title" content="APSD: Correctness-Dependent Asymmetric Target Distributions">
-  <meta property="og:description" content="Interpolate to preserve correct rollouts and extrapolate to correct incorrect ones.">
+  <meta property="og:description" content="Interpolate to preserve successful behavior and extrapolate to strengthen correction.">
   <meta property="og:image" content="https://jungseongryong.github.io/apsd/assets/apsd_figure1.png">
   <link rel="icon" type="image/png" href="../favicon-3d.png">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans&display=swap" rel="stylesheet">
   <title>APSD: Correctness-Dependent Asymmetric Target Distributions</title>
   <style>
-    html { scroll-behavior: smooth; scroll-padding-top: 4rem; }
-    .publication-title { margin-bottom: .3rem !important; }
-    .publication-authors { margin: 1.15rem auto .5rem; }
-    .publication-authors a { color: #3273dc; }
-    .author-note { margin: .25rem 0 .8rem; color: #555; font-size: .9rem; }
-    .author-affiliations { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
-    .author-block { display: inline-block; padding: 0 .12rem; }
-    .publication-links { margin-top: 1.15rem; }
-    .link-block { display: inline-block; margin: 0 .18rem .4rem; }
-    .section-nav { position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,.96); border-bottom: 1px solid #eee; }
-    .section-nav .container { display: flex; justify-content: center; gap: 1.5rem; min-height: 3rem; align-items: center; flex-wrap: wrap; }
-    .section-nav a { color: #4a4a4a; font-size: .9rem; }
-    .publication-banner { background-color: #f5f5f5; }
-    .paper-figure { display: block; width: 100%; height: auto; margin: 1.25rem auto; }
-    .paper-figure.medium { max-width: 850px; }
-    .section p { line-height: 1.7; }
-    .results-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: .95rem; }
-    .results-table th, .results-table td { padding: .55rem .65rem; border: 1px solid #dbdbdb; text-align: center; }
-    .results-table thead { background: #f5f5f5; }
-    .results-table td:nth-child(3), .results-table td:nth-child(5) { font-weight: 700; }
-    .citation { overflow-x: auto; padding: 1rem; background: #f5f5f5; font-size: .85rem; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 56px; }
+    body { font-family: 'Google Sans', 'Noto Sans', sans-serif; font-size: 16px; color: #222; background: #fff; line-height: 1.7; }
+    .container { max-width: 860px; margin: 0 auto; padding: 0 28px; }
+    header { background: linear-gradient(135deg, #fffde7 0%, #fce4ec 100%); border-bottom: 1px solid #f0d0d8; padding: 52px 28px 44px; text-align: center; }
+    .badges { margin-bottom: 22px; }
+    .badge { display: inline-block; font-size: 12.5px; font-weight: 700; letter-spacing: .04em; padding: 5px 14px; border-radius: 20px; margin: 4px; }
+    .badge-venue { background: #111; color: #fff; }
+    h1 { max-width: 980px; margin: 0 auto 24px; color: #111; font-size: 36px; font-weight: 800; line-height: 1.3; letter-spacing: -.3px; }
+    .authors { margin-bottom: 6px; color: #333; font-size: 17px; }
+    .authors a { color: #1565c0; text-decoration: none; }
+    .authors a:hover { text-decoration: underline; }
+    .equal-contribution { margin: 0 0 8px; color: #555; font-size: 13px; }
+    .affiliation { margin-bottom: 24px; color: #777; font-size: 14px; }
+    .affiliation span { display: inline-block; margin: 0 9px; }
+    .links { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+    .links a { display: inline-flex; align-items: center; gap: 7px; padding: 9px 22px; border-radius: 28px; background: #111; color: #fff; font-size: 14px; font-weight: 600; text-decoration: none; transition: background .15s; }
+    .links a:hover { background: #333; }
+    nav { position: sticky; top: 0; z-index: 100; padding: 0 28px; border-bottom: 1px solid #e8e8e8; background: rgba(255,255,255,.92); backdrop-filter: blur(8px); }
+    nav .nav-inner { display: flex; justify-content: space-between; align-items: center; max-width: 860px; margin: 0 auto; }
+    nav .nav-logo { background: linear-gradient(135deg, #f59e0b, #ec4899); background-clip: text; color: transparent; font-size: 22px; font-weight: 800; letter-spacing: -.3px; text-decoration: none; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    nav ul { display: flex; gap: 0; margin: 0; padding: 0; list-style: none; }
+    nav ul li a { display: block; padding: 14px 18px; border-bottom: 2px solid transparent; color: #555; font-size: 13.5px; font-weight: 600; text-decoration: none; transition: color .15s, border-color .15s; }
+    nav ul li a:hover { border-bottom-color: #111; color: #111; }
+    .body-wrap { padding: 0 28px; }
+    section { padding: 48px 0; border-bottom: 1px solid #f0f0f0; }
+    section:last-of-type { border-bottom: none; }
+    h2 { margin-bottom: 18px; color: #111; font-size: 26px; font-weight: 700; letter-spacing: -.2px; }
+    h3 { margin: 25px 0 10px; color: #111; font-size: 20px; font-weight: 700; }
+    p { margin-bottom: 16px; color: #333; line-height: 1.8; }
+    p:last-child { margin-bottom: 0; }
+    .figure { margin: 32px 0; text-align: center; }
+    .figure img { max-width: 100%; height: auto; border: 1px solid #e8e8e8; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,.06); }
+    .figure.no-shadow img { border: 1px solid #ddd; box-shadow: none; }
+    .figure img.wide { width: 100%; }
+    .caption { margin-top: 12px; color: #666; font-size: 13.5px; line-height: 1.65; text-align: left; }
+    .caption strong { color: #333; }
+    .insight-box { margin: 24px 0; padding: 16px 20px; border-left: 4px solid #1565c0; border-radius: 0 10px 10px 0; background: #f0f4ff; color: #1a237e; font-size: 15px; line-height: 1.75; }
+    .formula-block { margin: 20px 0; padding: 20px 28px; overflow-x: auto; border: 1px solid #e4e4e4; border-radius: 10px; background: #f8f8f8; font-size: 18px; text-align: center; }
+    pre { padding: 22px; overflow-x: auto; border: 1px solid #e0e0e0; border-radius: 10px; background: #f6f6f6; font-size: 13px; line-height: 1.65; text-align: left; }
+    footer { padding: 28px 0 48px; color: #aaa; font-size: 13px; text-align: center; }
+    footer a { color: #aaa; }
     @media (max-width: 600px) {
-      .section-nav .container { gap: .8rem; padding: .5rem; }
-      .section-nav a { font-size: .78rem; }
-      .results-table { font-size: .75rem; }
-      .results-table th, .results-table td { padding: .4rem .25rem; }
+      nav ul { display: none; }
+      header { padding: 40px 18px 36px; }
+      h1 { font-size: 29px; }
+      .container { padding-right: 20px; padding-left: 20px; }
+      .body-wrap { padding-right: 20px; padding-left: 20px; }
+      section { padding: 38px 0; }
+      .figure { margin: 24px 0; }
+      .formula-block { padding: 16px; font-size: 15px; }
     }
   </style>
 </head>
 <body>
-<nav class="section-nav" aria-label="Page sections">
-  <div class="container is-max-desktop">
-    <a href="#abstract">Abstract</a>
-    <a href="#motivation">Motivation</a>
-    <a href="#method">Method</a>
-    <a href="#results">Results</a>
-    <a href="#bibtex">BibTeX</a>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#top" class="nav-logo">APSD</a>
+    <ul>
+      <li><a href="#abstract">Abstract</a></li>
+      <li><a href="#motivation">Motivation</a></li>
+      <li><a href="#method">Method</a></li>
+      <li><a href="#results">Results</a></li>
+      <li><a href="#bibtex">BibTeX</a></li>
+    </ul>
   </div>
 </nav>
 
-<section class="hero">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered"><div class="column has-text-centered">
-        <h1 class="title is-1 publication-title">Correctness-Dependent Asymmetric Target Distributions for Self-Distillation Policy Optimization</h1>
-        <div class="is-size-5 publication-authors">
-          <span class="author-block"><a href="https://scholar.google.com/citations?user=I3tKCUoAAAAJ&amp;hl=en">Suwan Yoon</a><sup>1,*</sup>,</span>
-          <span class="author-block"><a href="https://jungseongryong.github.io/">Seongryong Jung</a><sup>2,*</sup>,</span>
-          <span class="author-block"><a href="https://aix.korea.ac.kr/our-lab/professor">Changhee Lee</a><sup>1</sup></span>
-        </div>
-        <div class="author-note">* Equal contribution</div>
-        <div class="is-size-6 author-affiliations"><div><sup>1</sup> Korea University</div><div><sup>2</sup> Chung-Ang University</div></div>
-        <div class="is-size-6">Preprint</div>
-        <div class="publication-links">
-          <span class="link-block"><a href="https://arxiv.org/abs/2610.25973" class="button is-normal is-rounded is-dark"><span class="icon"><i class="ai ai-arxiv"></i></span><span>arXiv</span></a></span>
-          <span class="link-block"><a href="https://arxiv.org/pdf/2610.25973" class="button is-normal is-rounded is-dark"><span class="icon"><i class="fas fa-file-pdf"></i></span><span>Paper</span></a></span>
-        </div>
-      </div></div>
-    </div>
+<header id="top">
+  <div class="badges"><span class="badge badge-venue">arXiv Preprint</span></div>
+  <h1>Correctness-Dependent Asymmetric Target Distributions for Self-Distillation Policy Optimization</h1>
+  <p class="authors">
+    <a href="https://scholar.google.com/citations?user=I3tKCUoAAAAJ&amp;hl=en">Suwan Yoon</a><sup>1*</sup>,
+    <a href="https://jungseongryong.github.io/">Seongryong Jung</a><sup>2*</sup>,
+    <a href="https://aix.korea.ac.kr/our-lab/professor">Changhee Lee</a><sup>1</sup>
+  </p>
+  <p class="equal-contribution">* Equal contribution</p>
+  <p class="affiliation"><span><sup>1</sup> Korea University</span><span><sup>2</sup> Chung-Ang University</span></p>
+  <div class="links">
+    <a href="https://arxiv.org/abs/2610.25973">&#128196; arXiv</a>
+    <a href="https://arxiv.org/pdf/2610.25973">&#128209; Paper</a>
   </div>
-</section>
+</header>
 
-<main class="container is-max-desktop">
-  <section class="section" id="abstract">
-    <div class="columns is-centered has-text-centered"><div class="column is-four-fifths">
-      <h2 class="title is-3">Abstract</h2>
-      <div class="content has-text-justified">
-        <p>Self-distillation methods improve language models by conditioning the current policy on feedback and using it as a self-teacher. Yet a single teacher-matching target can be poorly suited to both successful and failed rollouts: it may over-correct behavior that is already correct, while providing too little correction for incorrect behavior. We introduce Correctness-Dependent Asymmetric Target Distributions for Self-Distillation Policy Optimization (<strong>APSD</strong>), which constructs targets by reweighting the student distribution with a correctness-dependent power of the self-teacher-to-student probability ratio. For correct rollouts, APSD interpolates between student and self-teacher distributions; for incorrect rollouts, it extrapolates beyond the self-teacher. The resulting objective retains gradients through the student-dependent target. Across reinforcement learning with verifiable rewards and feedback, APSD improves performance over SDPO and reaches comparable performance with fewer training steps.</p>
-      </div>
-    </div></div>
+<div class="container body-wrap">
+  <section id="abstract">
+    <h2>Abstract</h2>
+    <p>Self-distillation methods improve language models by conditioning the current policy on feedback and using it as a self-teacher. Yet a single teacher-matching target can be poorly suited to both successful and failed rollouts: it may over-correct behavior that is already correct, while providing too little correction for incorrect behavior. We introduce Correctness-Dependent Asymmetric Target Distributions for Self-Distillation Policy Optimization (<strong>APSD</strong>), which constructs targets by reweighting the student distribution with a correctness-dependent power of the self-teacher-to-student probability ratio. For correct rollouts, APSD interpolates between student and self-teacher distributions; for incorrect rollouts, it extrapolates beyond the self-teacher. The resulting objective retains gradients through the student-dependent target. Across reinforcement learning with verifiable rewards and feedback, APSD improves performance over SDPO and reaches comparable performance with fewer training steps.</p>
   </section>
 
-  <section class="section" id="motivation">
-    <div class="columns is-centered"><div class="column">
-      <h2 class="title is-3 has-text-centered">Motivation</h2>
-      <div class="content has-text-justified">
-        <p>A feedback-conditioned self-teacher can offer useful alternatives, but its relationship to the student's original behavior depends on whether the rollout succeeded. Directly matching the teacher in both cases risks disturbing correct behavior and insufficiently correcting incorrect behavior. APSD addresses this mismatch by making target construction explicitly depend on rollout correctness.</p>
-      </div>
-      <img class="paper-figure medium" src="assets/Figure2.png" alt="Student and self-teacher token distributions show different discrepancies for correct and incorrect rollouts.">
-      <p class="has-text-centered">The student-teacher discrepancy differs between correct and incorrect rollouts, motivating asymmetric targets.</p>
-    </div></div>
+  <section id="motivation">
+    <h2>Motivation</h2>
+    <p>A feedback-conditioned self-teacher can differ from the student in ways that require different responses. On correct rollouts, matching the teacher directly can disrupt successful behavior. On incorrect rollouts, the teacher may remain too close to the student's failed behavior to provide sufficient correction.</p>
+    <div class="figure">
+      <img src="assets/apsd_figure1.png" alt="APSD interpolates targets for correct rollouts and extrapolates targets for incorrect rollouts.">
+      <p class="caption"><strong>Figure 1.</strong> APSD adapts the distillation target to rollout correctness: interpolation preserves successful behavior, while extrapolation amplifies alternative behavior.</p>
+    </div>
+    <div class="insight-box"><strong>Key insight:</strong> use an interpolated target when the rollout is correct, and an extrapolated target when it is incorrect.</div>
+    <div class="figure no-shadow">
+      <img src="assets/Figure2.png" alt="Teacher-student discrepancy on correct and incorrect rollouts in SDPO.">
+      <p class="caption"><strong>Figure 2.</strong> Teacher-student discrepancy in SDPO on LiveCodeBench v6, showing how direct matching can perturb a correct choice or retain an incorrect one.</p>
+    </div>
   </section>
 
-  <section class="section publication-banner" id="method">
-    <div class="columns is-centered"><div class="column">
-      <h2 class="title is-3 has-text-centered">Method</h2>
-      <div class="content has-text-justified">
-        <p>APSD constructs a target distribution from the student policy and its feedback-conditioned self-teacher. A coefficient controls the target's position: interpolation for correct rollouts preserves successful behavior; extrapolation for incorrect rollouts pushes the target further toward corrective behavior.</p>
-      </div>
-      <img class="paper-figure" src="assets/apsd_figure1.png" alt="APSD interpolates targets for correct rollouts and extrapolates targets for incorrect rollouts.">
-      <p class="has-text-centered">The target interpolates to preserve correct rollouts and extrapolates to correct incorrect rollouts.</p>
-      <img class="paper-figure" src="../images/apsd.png" alt="APSD framework: rollout sampling, correctness-dependent asymmetric target construction, token-level self-distillation, and target geometry.">
-      <p class="has-text-centered">APSD framework: rollout sampling, correctness-dependent target construction, and token-level self-distillation.</p>
-      <div class="content has-text-justified">
-        <h3 class="title is-4">Correctness-dependent target</h3>
-        <p>Let &pi;<sub>&theta;</sub> denote the student and &pi; the feedback-conditioned self-teacher. APSD forms a normalized target proportional to &pi;<sub>&theta;</sub><sup>1-&alpha;</sup>&pi;<sup>&alpha;</sup>. For correct rollouts, 0 &lt; &alpha; &lt; 1 places the target between student and teacher. For incorrect rollouts, &alpha; &gt; 1 extrapolates beyond the teacher.</p>
-        <h3 class="title is-4">Optimization</h3>
-        <p>The target depends on the student policy, and APSD retains gradients through this dependence during reverse-KL self-distillation. Detaching the complete target removes this coupling and reduces the update to a scaled SDPO-style gradient. Interpolation preserves successful behavior, while extrapolation amplifies corrective pressure on failed behavior.</p>
-      </div>
-      <img class="paper-figure medium" src="assets/figures-apsd_trajectories.png" alt="Qualitative token-level examples illustrating APSD behavior across rollouts.">
-      <p class="has-text-centered">Token-level examples illustrate how APSD treats successful and unsuccessful behavior differently.</p>
-    </div></div>
+  <section id="method">
+    <h2>Method</h2>
+    <p>APSD constructs a correctness-dependent target by reweighting the student policy according to the self-teacher-to-student probability ratio. For a token v, the target is proportional to the student distribution raised to 1 minus alpha times the self-teacher distribution raised to alpha:</p>
+    <div class="formula-block">&pi;<sub>&theta;,&alpha;</sub><sup>APSD</sup>(v) &prop; &pi;<sub>&theta;</sub>(v)<sup>1-&alpha;</sup> &pi;(v)<sup>&alpha;</sup></div>
+    <p>For correct rollouts, 0 &lt; &alpha; &lt; 1 places the target between the student and self-teacher. For incorrect rollouts, &alpha; &gt; 1 extrapolates beyond the self-teacher. APSD minimizes reverse-KL self-distillation while retaining gradients through the student-dependent target.</p>
+    <div class="figure">
+      <img class="wide" src="../images/apsd.png" alt="APSD framework: rollout sampling, asymmetric target construction, token-level self-distillation, and target geometry.">
+      <p class="caption"><strong>Figure 3.</strong> APSD framework: sample rollouts, construct correctness-dependent targets, then optimize token-level self-distillation.</p>
+    </div>
+    <h3>Theoretical analysis</h3>
+    <p>The objective combines reverse-KL and a counterbalancing R&eacute;nyi-divergence term. The coefficient controls the target's position along a generalized reverse-KL barycentric path and shapes gradient dynamics. Detaching the complete target removes the student-target coupling term and reduces the update to a scaled SDPO gradient.</p>
+    <div class="figure no-shadow">
+      <img src="assets/figures-apsd_trajectories.png" alt="Qualitative token-level examples illustrating APSD behavior across rollouts.">
+      <p class="caption"><strong>Qualitative examples.</strong> Token-level examples illustrate APSD's treatment of successful and unsuccessful behavior.</p>
+    </div>
   </section>
 
-  <section class="section" id="results">
-    <div class="columns is-centered"><div class="column">
-      <h2 class="title is-3 has-text-centered">Results</h2>
-      <div class="content has-text-justified">
-        <p>We evaluate APSD in reinforcement learning with verifiable rewards (RLVR) and reinforcement learning with feedback (RLRF). RLRF uses code-execution feedback on LiveCodeBench v6 with Qwen3 models. RLVR covers scientific reasoning and tool-use tasks, including SciKnowEval subsets and ToolAlpaca.</p>
-        <h3 class="title is-4">LiveCodeBench v6 · RLRF</h3>
-        <p>APSD improves Avg@4 and Pass@4 over SDPO at each evaluated Qwen3 model scale. Values are percentages; higher is better.</p>
-      </div>
-      <div class="table-container">
-        <table class="results-table">
-          <thead><tr><th>Model</th><th>SDPO Avg@4</th><th>APSD Avg@4</th><th>SDPO Pass@4</th><th>APSD Pass@4</th></tr></thead>
-          <tbody>
-            <tr><th>Qwen3-1.7B</th><td>32.06</td><td>34.16</td><td>32.06</td><td>34.35</td></tr>
-            <tr><th>Qwen3-4B</th><td>42.56</td><td>47.71</td><td>42.75</td><td>48.85</td></tr>
-            <tr><th>Qwen3-8B</th><td>45.04</td><td>49.62</td><td>47.33</td><td>51.15</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="content has-text-justified">
-        <h3 class="title is-4">Scientific reasoning and tool use · RLVR</h3>
-        <p>Average highest Avg@16 accuracy under a five-hour training budget (SDPO to APSD): Olmo3-7B-Instruct, 69.03 to 71.25; Qwen3-8B, 70.65 to 75.67.</p>
-        <h3 class="title is-4">Training efficiency</h3>
-        <p>Across Qwen3 model scales, APSD reaches SDPO's performance with an average of 2.6 times fewer training steps.</p>
-      </div>
-      <img class="paper-figure medium" src="assets/figures-sensitivity.png" alt="APSD performance sensitivity to asymmetry strength under RLVR and RLRF.">
-      <p class="has-text-centered">Sensitivity analysis shows the effect of asymmetry strength across feedback settings.</p>
-    </div></div>
+  <section id="results">
+    <h2>Results</h2>
+    <p>We evaluate APSD in reinforcement learning with verifiable rewards (RLVR) and rich feedback (RLRF). The paper reports results on five RLVR benchmarks and LiveCodeBench v6 across three Qwen3 model scales.</p>
+    <div class="figure no-shadow">
+      <img class="wide" src="assets/table1_rlvr.png" alt="Screenshot of Table 1 from the APSD paper: RLVR performance on five benchmarks.">
+      <p class="caption"><strong>Table 1.</strong> RLVR performance across five benchmarks. APSD has the highest average for Olmo3-7B-Instruct and Qwen3-8B.</p>
+    </div>
+    <div class="figure no-shadow">
+      <img class="wide" src="assets/table2_rlrf.png" alt="Screenshot of Table 2 from the APSD paper: RLRF performance on LiveCodeBench v6 across Qwen3 model scales.">
+      <p class="caption"><strong>Table 2.</strong> RLRF performance on LiveCodeBench v6. APSD achieves the best overall Avg@4 and Pass@4 across the three Qwen3 scales.</p>
+    </div>
+    <h3>Training efficiency and sensitivity</h3>
+    <p>Across Qwen3 model scales, APSD reaches SDPO's performance with an average of 2.6 times fewer training steps. Sensitivity experiments show that reversing the proposed asymmetry degrades performance below SDPO.</p>
+    <div class="figure no-shadow">
+      <img src="assets/figures-sensitivity.png" alt="Sensitivity of APSD to asymmetry strength under RLVR and RLRF.">
+      <p class="caption"><strong>Figure 5.</strong> Sensitivity to the asymmetry strength under RLVR and RLRF.</p>
+    </div>
   </section>
 
-  <section class="section" id="bibtex">
-    <h2 class="title is-3">BibTeX</h2>
-    <pre class="citation"><code>@misc{yoon2026correctnessdependentasymmetrictargetdistributions,
+  <section id="bibtex">
+    <h2>BibTeX</h2>
+    <pre>@misc{yoon2026correctnessdependentasymmetrictargetdistributions,
   title={Correctness-Dependent Asymmetric Target Distributions for Self-Distillation Policy Optimization},
   author={Suwan Yoon and Seongryong Jung and Changhee Lee},
   year={2026},
@@ -156,13 +162,10 @@
   archivePrefix={arXiv},
   primaryClass={cs.LG},
   url={https://arxiv.org/abs/2610.25973}
-}</code></pre>
+}</pre>
   </section>
-</main>
+</div>
 
-<footer class="footer"><div class="content has-text-centered">
-  <p>APSD · <a href="https://jungseongryong.github.io/">Seongryong Jung</a> · <a href="https://arxiv.org/abs/2610.25973">arXiv:2610.25973</a></p>
-  <p><a href="../">Back to homepage</a></p>
-</div></footer>
+<footer>APSD &middot; <a href="https://jungseongryong.github.io/">Seongryong Jung</a> &middot; <a href="https://arxiv.org/abs/2610.25973">arXiv:2610.25973</a></footer>
 </body>
 </html>
