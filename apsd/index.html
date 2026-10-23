@@ -79,15 +79,15 @@
 <main class="container">
   <section id="abstract">
     <h2>Abstract</h2>
-    <p>Self-distillation policy optimization provides dense token-level supervision for LLM posttraining through feedback-conditioned self-teachers. However, directly matching the self-teacher can disrupt successful behaviors on correct rollouts while providing insufficient correction on incorrect ones. We propose Asymmetric Policy Optimization via Self-Distillation (<strong>APSD</strong>), which constructs correctness-dependent targets by mixing student and self-teacher distributions: interpolation preserves successful behaviors on correct rollouts, while extrapolation beyond the self-teacher strengthens correction on incorrect ones. We analyze APSD through divergence decomposition, reverse-KL barycentric geometry, and gradient analysis, highlighting the importance of gradient flow through student-dependent targets. Experiments under reinforcement learning with verifiable rewards and rich feedback show that APSD achieves strong overall performance against reinforcement-learning and self-distillation baselines and matches SDPO performance with 2.6× fewer training steps on average across Qwen3 model scales.</p>
+    <p>Self-distillation policy optimization provides dense token-level supervision for LLM posttraining through feedback-conditioned self-teachers. However, directly matching the self-teacher can disrupt successful behaviors on correct rollouts while providing insufficient correction on incorrect ones. We propose <strong>Asymmetric Policy Optimization via Self-Distillation (APSD)</strong>, which constructs correctness-dependent targets by mixing student and self-teacher distributions: interpolation preserves successful behaviors on correct rollouts, while extrapolation beyond the self-teacher strengthens correction on incorrect ones. We analyze APSD through divergence decomposition, reverse-KL barycentric geometry, and gradient analysis, highlighting the importance of gradient flow through student-dependent targets. Experiments under reinforcement learning with verifiable rewards and rich feedback show that APSD achieves strong overall performance against reinforcement-learning and self-distillation baselines and matches SDPO performance with 2.6× fewer training steps on average across Qwen3 model scales.</p>
   </section>
 
   <section id="overview">
-    <p class="takeaway">APSD adapts the self-distillation target to rollout correctness: preserve successful behavior and push more strongly away from failed behavior.</p>
-    <div class="figure">
-      <img class="wide" src="../images/apsd.png" alt="APSD overview: rollout sampling, correctness-dependent target construction, token-level self-distillation, and analysis.">
-      <p class="caption">Overview of APSD: sample rollouts, construct an asymmetric target based on correctness, and optimize token-level self-distillation.</p>
+    <div class="figure compact-figure">
+      <img src="assets/apsd_figure1.png" alt="APSD interpolates between student and teacher on correct rollouts and extrapolates beyond the teacher on incorrect rollouts.">
+      <p class="caption">APSD interpolates to preserve correct behavior and extrapolates to strengthen correction on incorrect behavior.</p>
     </div>
+    <p class="takeaway">APSD adapts the self-distillation target to rollout correctness: preserve successful behavior and push more strongly away from failed behavior.</p>
   </section>
 
   <section id="motivation">
@@ -100,14 +100,14 @@
     </div>
     <p>The incorrect example shows the opposite failure: both student and self-teacher strongly prefer the same incorrect token (about 100% and 98.62%, respectively). Matching the teacher as-is may not move the student far enough toward a correct alternative.</p>
     <div class="insight-box"><strong>Key insight:</strong> preserve behavior on successful rollouts, but apply stronger correction to failed ones. The target should depend on rollout correctness.</div>
-    <div class="figure compact-figure">
-      <img src="assets/apsd_figure1.png" alt="APSD interpolates between student and teacher on correct rollouts and extrapolates beyond the teacher on incorrect rollouts.">
-      <p class="caption">APSD's correctness-dependent response: interpolate to preserve correct behavior and extrapolate to amplify alternatives for incorrect behavior.</p>
-    </div>
   </section>
 
   <section id="method">
     <h2>How APSD Works</h2>
+    <div class="figure">
+      <img class="wide" src="../images/apsd.png" alt="APSD overview: rollout sampling, correctness-dependent target construction, token-level self-distillation, and analysis.">
+      <p class="caption">Overview of APSD: sample rollouts, construct an asymmetric target based on correctness, and optimize token-level self-distillation.</p>
+    </div>
     <p>Let &pi;<sub>&theta;</sub> be the student and &pi; its feedback-conditioned self-teacher. APSD reweights the student distribution using the teacher-to-student probability ratio:</p>
     <div class="formula-block">$$\pi_{\theta,\alpha}^{\mathrm{APSD}}(v) \propto \pi_{\theta}(v)^{1-\alpha}\,\pi(v)^{\alpha}$$</div>
     <p>For correct rollouts, 0 &lt; &alpha; &lt; 1 yields interpolation. For incorrect rollouts, &alpha; &gt; 1 yields extrapolation beyond the self-teacher. The paper characterizes this objective through three propositions.</p>
