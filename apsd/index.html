@@ -8,6 +8,8 @@
   <meta property="og:description" content="Correctness-dependent interpolation and extrapolation for self-distillation.">
   <meta property="og:image" content="https://jungseongryong.github.io/apsd/assets/apsd_figure1.png">
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <title>APSD: Correctness-Dependent Asymmetric Target Distributions</title>
   <style>
@@ -24,7 +26,8 @@
     .affiliation { margin-bottom: 24px; color: #777; font-size: 14px; }
     .affiliation span { display: inline-block; margin: 0 8px; }
     .links { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
-    .links a { display: inline-block; padding: 8px 21px; border-radius: 24px; background: #111; color: #fff; font-size: 14px; font-weight: 600; text-decoration: none; }
+    .links a { display: inline-flex; align-items: center; gap: 8px; padding: 8px 21px; border-radius: 24px; background: #111; color: #fff; font-size: 14px; font-weight: 600; text-decoration: none; }
+    .links .icon { font-size: 16px; line-height: 1; }
     .links a:hover { background: #333; }
     section { padding: 42px 0; border-bottom: 1px solid #eee; }
     h2 { margin-bottom: 16px; color: #111; font-size: 26px; font-weight: 700; letter-spacing: -.2px; }
@@ -75,8 +78,8 @@
   <p class="equal-contribution">* Equal contribution</p>
   <p class="affiliation"><span><sup>1</sup> Korea University</span><span><sup>2</sup> Chung-Ang University</span></p>
   <div class="links">
-    <a href="https://arxiv.org/abs/2610.25973">Paper</a>
-    <a href="https://arxiv.org/pdf/2610.25973">PDF</a>
+    <a href="https://arxiv.org/abs/2610.25973"><span class="icon" aria-hidden="true"><i class="ai ai-arxiv"></i></span><span>arXiv</span></a>
+    <a href="https://arxiv.org/pdf/2610.25973"><span class="icon" aria-hidden="true"><i class="fas fa-file-pdf"></i></span><span>PDF</span></a>
   </div>
 </header>
 
@@ -177,6 +180,11 @@
         <p class="caption">Ablation results on LiveCodeBench v6 (Avg@4). APSD-C applies interpolation only to correct rollouts; APSD-I applies extrapolation only to incorrect rollouts.</p>
       </div>
     </div>
+  </section>
+
+  <section id="conclusion">
+    <h2>Conclusion</h2>
+    <p>We present APSD, a self-distillation method that constructs asymmetric targets based on rollout correctness. APSD interpolates between student and self-teacher distributions to preserve successful behaviors and extrapolates beyond the self-teacher to strengthen correction of unsuccessful ones. Our analyses characterize APSD through divergence decomposition, reverse-KL barycentric geometry, and gradient flow through student-dependent targets. Experiments across RLVR and RLRF show strong overall performance against reinforcement-learning and self-distillation baselines, supporting the need for correctness-dependent student–self-teacher distribution mixing.</p>
   </section>
 
   <section id="bibtex">
