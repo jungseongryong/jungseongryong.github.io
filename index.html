@@ -64,7 +64,9 @@
             <tr>
               <td class="intro-photo">
                 <div class="profile-card">
-                  <img class="profile-photo" alt="Seongryong Jung at EMNLP 2025 Oral" src="images/emnlp-2025-oral.jpg">
+                  <button class="profile-photo-toggle" type="button" aria-label="Toggle profile photo Easter egg" aria-pressed="false">
+                    <img class="profile-photo" alt="Seongryong Jung at EMNLP 2025 Oral" src="images/emnlp-2025-oral.jpg">
+                  </button>
                   <p class="profile-caption">@EMNLP 2025 Oral</p>
                 </div>
               </td>
@@ -350,19 +352,17 @@
       </tr>
     </tbody></table>
   <script>
+    const photoToggle = document.querySelector(".profile-photo-toggle");
     const profilePhoto = document.querySelector(".profile-photo");
     const originalPhoto = profilePhoto.getAttribute("src");
-    let revealTimer;
+    const originalAlt = profilePhoto.getAttribute("alt");
+    let isEasterEgg = false;
 
-    profilePhoto.addEventListener("mouseenter", () => {
-      revealTimer = window.setTimeout(() => {
-        profilePhoto.setAttribute("src", "seongryong.png");
-      }, 1000);
-    });
-
-    profilePhoto.addEventListener("mouseleave", () => {
-      window.clearTimeout(revealTimer);
-      profilePhoto.setAttribute("src", originalPhoto);
+    photoToggle.addEventListener("click", () => {
+      isEasterEgg = !isEasterEgg;
+      profilePhoto.setAttribute("src", isEasterEgg ? "seongryong.png" : originalPhoto);
+      profilePhoto.setAttribute("alt", isEasterEgg ? "Seongryong Jung, Easter egg photo" : originalAlt);
+      photoToggle.setAttribute("aria-pressed", String(isEasterEgg));
     });
   </script>
   </body>
