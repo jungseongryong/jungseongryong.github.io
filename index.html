@@ -349,5 +349,21 @@
         </td>
       </tr>
     </tbody></table>
+  <script>
+    const profilePhoto = document.querySelector(".profile-photo");
+    const originalPhoto = profilePhoto.getAttribute("src");
+    let revealTimer;
+
+    profilePhoto.addEventListener("mouseenter", () => {
+      revealTimer = window.setTimeout(() => {
+        profilePhoto.setAttribute("src", "seongryong.png");
+      }, 2000);
+    });
+
+    profilePhoto.addEventListener("mouseleave", () => {
+      window.clearTimeout(revealTimer);
+      profilePhoto.setAttribute("src", originalPhoto);
+    });
+  </script>
   </body>
 </html>
