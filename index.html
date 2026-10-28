@@ -352,13 +352,17 @@
   <script>
     const profilePhoto = document.querySelector(".profile-photo");
     const originalPhoto = profilePhoto.getAttribute("src");
+    const profileCaption = document.querySelector(".profile-caption");
+    const originalCaption = profileCaption.textContent;
 
     profilePhoto.addEventListener("mouseenter", () => {
       profilePhoto.setAttribute("src", "seongryong.png");
+      profileCaption.textContent = "You found the easter egg.";
     });
 
     profilePhoto.addEventListener("mouseleave", () => {
       profilePhoto.setAttribute("src", originalPhoto);
+      profileCaption.textContent = originalCaption;
     });
   </script>
   </body>
