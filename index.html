@@ -352,16 +352,12 @@
   <script>
     const profilePhoto = document.querySelector(".profile-photo");
     const originalPhoto = profilePhoto.getAttribute("src");
-    let revealTimer;
 
     profilePhoto.addEventListener("mouseenter", () => {
-      revealTimer = window.setTimeout(() => {
-        profilePhoto.setAttribute("src", "seongryong.png");
-      }, 900);
+      profilePhoto.setAttribute("src", "seongryong.png");
     });
 
     profilePhoto.addEventListener("mouseleave", () => {
-      window.clearTimeout(revealTimer);
       profilePhoto.setAttribute("src", originalPhoto);
     });
   </script>
