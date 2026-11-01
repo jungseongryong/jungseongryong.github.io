@@ -355,12 +355,12 @@ span.highlight {
   }
 
   .profile-photo {
-    max-width: 180px;
+    max-width: 220px;
     margin: 0;
   }
 
   .profile-card {
-    max-width: 180px;
+    max-width: 220px;
     margin: 0 auto;
     transform: none;
   }
