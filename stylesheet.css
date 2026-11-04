@@ -156,7 +156,7 @@ h2 {
 }
 
 .profile-card {
-  width: 85%;
+  width: 90%;
   margin: 0 auto;
   transform: translateY(20px);
 }
@@ -355,13 +355,13 @@ span.highlight {
   }
 
   .profile-photo {
-    max-width: 260px;
+    max-width: 220px;
     margin: 0;
   }
 
   .profile-card {
     width: 90%;
-    max-width: 260px;
+    max-width: 220px;
     margin: 0 auto;
     transform: none;
   }
