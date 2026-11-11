@@ -368,15 +368,30 @@
     const originalPhoto = profilePhoto.getAttribute("src");
     const profileCaption = document.querySelector(".profile-caption");
     const originalCaption = profileCaption.textContent;
+    const alternatePhoto = "seongryong.png";
+
+    function showAlternatePhoto() {
+      profilePhoto.setAttribute("src", alternatePhoto);
+      profileCaption.textContent = "Welcome to my website!";
+    }
+
+    function showOriginalPhoto() {
+      profilePhoto.setAttribute("src", originalPhoto);
+      profileCaption.textContent = originalCaption;
+    }
 
     profilePhoto.addEventListener("mouseenter", () => {
-      profilePhoto.setAttribute("src", "seongryong.png");
-      profileCaption.textContent = "Welcome to my website!";
+      showAlternatePhoto();
     });
 
     profilePhoto.addEventListener("mouseleave", () => {
-      profilePhoto.setAttribute("src", originalPhoto);
-      profileCaption.textContent = originalCaption;
+      showOriginalPhoto();
+    });
+
+    profilePhoto.addEventListener("click", () => {
+      const isAlternate = profilePhoto.getAttribute("src") === alternatePhoto;
+      if (isAlternate) showOriginalPhoto();
+      else showAlternatePhoto();
     });
   </script>
   </body>
