@@ -327,6 +327,10 @@ h2 {
   font-weight: 700;
 }
 
+.trajectory-mobile small.award {
+  color: #f0a000;
+}
+
 .one {
   width: 160px;
   height: 160px;
@@ -447,6 +451,10 @@ body.dark-mode .trajectory-mobile div::before {
 body.dark-mode .trajectory-mobile .trajectory-future::before {
   background: #111827;
   border-color: #6b7280;
+}
+
+body.dark-mode .trajectory-mobile small.award {
+  color: #f0a000;
 }
 
 body.dark-mode .trajectory-desktop line {
