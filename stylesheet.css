@@ -74,6 +74,27 @@ a:hover {
   text-decoration: none;
 }
 
+.theme-toggle {
+  position: fixed;
+  top: 18px;
+  right: 22px;
+  z-index: 10;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #d6d6d6;
+  border-radius: 50%;
+  background: #fff;
+  color: #333;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.theme-toggle:hover {
+  border-color: #999;
+  color: #111;
+}
+
 body,
 td,
 th,
@@ -332,7 +353,94 @@ span.highlight {
     border-radius: 10px;
 }
 
+body.dark-mode {
+  background: #111827;
+  color: #e5e7eb;
+}
+
+body.dark-mode a {
+  color: #78b7ff;
+}
+
+body.dark-mode a:focus,
+body.dark-mode a:hover {
+  color: #ffb454;
+}
+
+body.dark-mode h2 {
+  border-bottom-color: #374151;
+}
+
+body.dark-mode .theme-toggle {
+  border-color: #4b5563;
+  background: #1f2937;
+  color: #f9fafb;
+}
+
+body.dark-mode .theme-toggle:hover {
+  border-color: #9ca3af;
+  color: #fff;
+}
+
+body.dark-mode .publication-card {
+  background: #1f2937 !important;
+  color: #e5e7eb;
+}
+
+body.dark-mode .publication-authors a,
+body.dark-mode .publication-authors a:hover,
+body.dark-mode .news-list a.news-link,
+body.dark-mode .news-list a.news-link:hover {
+  color: #e5e7eb;
+}
+
+body.dark-mode .profile-caption,
+body.dark-mode .period,
+body.dark-mode .edu-date,
+body.dark-mode .cv-item-desc,
+body.dark-mode .cv-item-date,
+body.dark-mode .trajectory-mobile span,
+body.dark-mode .trajectory-mobile small {
+  color: #9ca3af;
+}
+
+body.dark-mode .edu-location,
+body.dark-mode .edu-list,
+body.dark-mode .cv-item-org {
+  color: #cbd5e1;
+}
+
+body.dark-mode .cv-item,
+body.dark-mode .news-list li {
+  border-bottom-color: #374151;
+}
+
+body.dark-mode .trajectory-mobile {
+  border-left-color: #4b5563;
+}
+
+body.dark-mode .trajectory-mobile div::before {
+  border-color: #111827;
+  background: #e5e7eb;
+}
+
+body.dark-mode .trajectory-mobile .trajectory-future::before {
+  background: #111827;
+  border-color: #6b7280;
+}
+
+body.dark-mode .paperthumb {
+  border-color: #4b5563;
+  background: #1f2937;
+  color: #e5e7eb;
+}
+
 @media (max-width: 640px) {
+  .theme-toggle {
+    top: 12px;
+    right: 12px;
+  }
+
   .intro,
   .intro tbody,
   .intro tr,
