@@ -429,6 +429,35 @@ body.dark-mode .trajectory-mobile .trajectory-future::before {
   border-color: #6b7280;
 }
 
+body.dark-mode .trajectory-desktop line {
+  stroke: #6b7280;
+}
+
+body.dark-mode .trajectory-desktop circle {
+  fill: #e5e7eb;
+  stroke: #111827;
+}
+
+body.dark-mode .trajectory-desktop text[fill="#222"] {
+  fill: #f3f4f6;
+}
+
+body.dark-mode .trajectory-desktop text[fill="#777"] {
+  fill: #cbd5e1;
+}
+
+body.dark-mode .trajectory-desktop text[fill="#aaa"] {
+  fill: #9ca3af;
+}
+
+body.dark-mode .trajectory-desktop text[fill="#ccc"] {
+  fill: #9ca3af;
+}
+
+body.dark-mode .trajectory-desktop text[fill="#ddd"] {
+  fill: #6b7280;
+}
+
 body.dark-mode .paperthumb {
   border-color: #4b5563;
   background: #1f2937;
