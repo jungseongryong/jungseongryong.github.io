@@ -111,10 +111,6 @@ strong {
 }
 
 .research-keyword {
-  color: #d4749f;
-}
-
-body.dark-mode .research-keyword {
   color: #f08ab5;
 }
 
