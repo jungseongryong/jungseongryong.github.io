@@ -111,7 +111,7 @@ strong {
 }
 
 .research-keyword {
-  color: #b85c86;
+  color: #f08ab5;
 }
 
 h2 {
@@ -384,10 +384,6 @@ span.highlight {
 body.dark-mode {
   background: #111827;
   color: #e5e7eb;
-}
-
-body.dark-mode .research-keyword {
-  color: #f08ab5;
 }
 
 body.dark-mode a {
