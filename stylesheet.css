@@ -110,6 +110,10 @@ strong {
   font-size: 14px;
 }
 
+.research-keyword {
+  color: #b85c86;
+}
+
 h2 {
   margin: 0;
   font-weight: normal;
@@ -380,6 +384,10 @@ span.highlight {
 body.dark-mode {
   background: #111827;
   color: #e5e7eb;
+}
+
+body.dark-mode .research-keyword {
+  color: #f08ab5;
 }
 
 body.dark-mode a {
