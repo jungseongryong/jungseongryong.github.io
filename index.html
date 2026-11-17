@@ -329,11 +329,21 @@
                 <h2 style="margin-top:24px;">Trajectory</h2>
                 <div class="trajectory" style="margin-top:12px;">
                 <svg class="trajectory-desktop" viewBox="0 0 1050 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;">
+                  <defs>
+                    <linearGradient id="trajectory-future-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stop-color="#b8b8b8"/>
+                      <stop offset="100%" stop-color="#f08ab5"/>
+                    </linearGradient>
+                    <marker id="trajectory-future-arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+                      <path d="M0,0 L7,3.5 L0,7 Z" fill="#f08ab5"/>
+                    </marker>
+                  </defs>
                   <!-- Timeline line: solid to last point, then dashed -->
                   <line x1="30" y1="120" x2="825" y2="120" stroke="#999" stroke-width="2"/>
-                  <line x1="825" y1="120" x2="990" y2="120" stroke="#ccc" stroke-width="2" stroke-dasharray="6,5"/>
+                  <line class="trajectory-future-line" x1="825" y1="120" x2="990" y2="120" stroke="url(#trajectory-future-gradient)" stroke-width="2.5" stroke-dasharray="6,5" marker-end="url(#trajectory-future-arrow)"/>
+                  <circle class="trajectory-future-node" cx="990" cy="120" r="5" fill="#f08ab5" stroke="white" stroke-width="2.5"/>
                   <!-- Future: Self-Evolving AI -->
-                  <text x="975" y="108" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="11" font-weight="700" fill="#ccc">RSI</text>
+                  <text x="975" y="108" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="11" font-weight="700" fill="#f08ab5">RSI</text>
                   <text x="975" y="123" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="9" fill="#ddd">···</text>
 
                   <!-- 1: CAU — ABOVE — x=75 -->
