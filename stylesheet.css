@@ -251,6 +251,7 @@ h2 {
 .journey-direction {
   position: absolute;
   display: flex;
+  flex-wrap: wrap;
   gap: 6px;
   top: 18%;
   left: 17%;
