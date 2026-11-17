@@ -319,6 +319,14 @@ h2 {
   opacity: 0.16;
 }
 
+.journey-glow {
+  pointer-events: none;
+}
+
+body.dark-mode .journey-glow {
+  opacity: 0.65;
+}
+
 .journey-ring {
   fill: none;
   stroke: var(--node-color);

@@ -332,6 +332,14 @@
                     <p class="journey-direction"><span>Post-training</span><span aria-hidden="true"> &rarr; </span><span>Recursive Self-Improvement</span></p>
                     <svg class="journey-desktop" viewBox="0 0 1000 470" aria-hidden="true" focusable="false">
                       <defs><linearGradient id="journey-gradient-desktop" gradientUnits="userSpaceOnUse" x1="170" y1="0" x2="935" y2="0"><stop offset="0" stop-color="#68b681"/><stop offset=".16" stop-color="#9fbe8a"/><stop offset=".33" stop-color="#b9bf8a"/><stop offset=".5" stop-color="#d1b591"/><stop offset=".66" stop-color="#d4a295"/><stop offset=".84" stop-color="#cc8ea9"/><stop offset="1" stop-color="#e879ac"/></linearGradient></defs>
+                      <defs>
+                        <radialGradient id="journey-glow-desktop">
+                          <stop offset="0" stop-color="#e879ac" stop-opacity=".18"/>
+                          <stop offset=".45" stop-color="#e879ac" stop-opacity=".07"/>
+                          <stop offset="1" stop-color="#e879ac" stop-opacity="0"/>
+                        </radialGradient>
+                      </defs>
+                      <ellipse class="journey-glow" cx="935" cy="63" rx="62" ry="83" fill="url(#journey-glow-desktop)"/>
                       <path class="journey-origin" d="M60 385 C100 379 133 374 170 373"/>
                       <path class="journey-route" stroke="url(#journey-gradient-desktop)" d="M170 373 C217 372 245 348 290 338 S377 318 420 318 S507 285 550 260 S629 244 675 244 S769 202 810 155"/>
                       <path class="journey-route journey-horizon" stroke="url(#journey-gradient-desktop)" d="M810 155 C851 111 900 111 935 63 S975 30 984 15"/>
@@ -355,6 +363,14 @@
                     </svg>
                     <svg class="journey-mobile" viewBox="0 0 80 800" aria-hidden="true" focusable="false">
                       <defs><linearGradient id="journey-gradient-mobile" gradientUnits="userSpaceOnUse" x1="0" y1="140" x2="0" y2="740"><stop offset="0" stop-color="#68b681"/><stop offset=".16" stop-color="#9fbe8a"/><stop offset=".33" stop-color="#b9bf8a"/><stop offset=".5" stop-color="#d1b591"/><stop offset=".66" stop-color="#d4a295"/><stop offset=".84" stop-color="#cc8ea9"/><stop offset="1" stop-color="#e879ac"/></linearGradient></defs>
+                      <defs>
+                        <radialGradient id="journey-glow-mobile">
+                          <stop offset="0" stop-color="#e879ac" stop-opacity=".18"/>
+                          <stop offset=".45" stop-color="#e879ac" stop-opacity=".07"/>
+                          <stop offset="1" stop-color="#e879ac" stop-opacity="0"/>
+                        </radialGradient>
+                      </defs>
+                      <ellipse class="journey-glow" cx="48" cy="740" rx="44" ry="68" fill="url(#journey-glow-mobile)"/>
                       <path class="journey-origin" d="M26 40 C26 87 40 94 40 140"/>
                       <path class="journey-route" stroke="url(#journey-gradient-mobile)" d="M40 140 C40 185 20 197 30 240 S61 297 52 340 S17 397 28 440 S53 498 44 540 S19 599 32 640"/>
                       <path class="journey-route journey-horizon" stroke="url(#journey-gradient-mobile)" d="M32 640 C46 680 58 697 48 740 S38 775 42 787"/>
