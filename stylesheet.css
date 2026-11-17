@@ -266,7 +266,7 @@ h2 {
   position: absolute;
   inset: auto 0 0;
   height: 1px;
-  background: linear-gradient(90deg, #68b68180 0%, #68b68180 45%, #e879ac30 90%, transparent);
+  background: linear-gradient(90deg, #68b681 0%, #9fbe8a 16%, #b9bf8a 33%, #d1b591 50%, #d4a295 66%, #cc8ea9 84%, #e879ac 100%);
   content: "";
 }
 
