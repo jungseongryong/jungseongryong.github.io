@@ -394,16 +394,28 @@ body.dark-mode .research-journey {
 
 @container (max-width: 680px) {
   .journey-stage {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto 800px;
+    row-gap: 16px;
     aspect-ratio: auto;
-    height: 862px;
+    height: auto;
     margin-top: 16px;
   }
 
   .journey-direction {
-    top: 0;
-    left: 0;
-    right: 0;
+    position: relative;
+    inset: auto;
+    grid-area: 1 / 1;
+    display: grid;
+    grid-template-columns: max-content max-content minmax(0, 1fr);
+    align-items: center;
     font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .journey-direction span:last-child {
+    text-wrap: balance;
   }
 
   .journey-desktop {
@@ -411,16 +423,21 @@ body.dark-mode .research-journey {
   }
 
   .journey-mobile {
-    position: absolute;
-    top: 52px;
+    position: relative;
+    grid-area: 2 / 1;
     display: block;
     width: 80px;
     height: 800px;
     overflow: visible;
   }
 
+  .journey-milestones {
+    position: relative;
+    grid-area: 2 / 1;
+  }
+
   .journey-milestone {
-    top: calc(52px + var(--mobile-y));
+    top: var(--mobile-y);
     left: 90px;
     width: calc(100% - 90px);
     max-width: none;
