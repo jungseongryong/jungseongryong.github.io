@@ -468,8 +468,32 @@ body.dark-mode .trajectory-desktop circle.trajectory-future-node {
   stroke: #111827;
 }
 
-body.dark-mode .trajectory-desktop line.trajectory-future-line {
-  stroke: url(#trajectory-future-gradient);
+body.dark-mode .trajectory-desktop .trajectory-progress-line {
+  stroke: url(#trajectory-progress-gradient);
+}
+
+body.dark-mode .trajectory-desktop circle.trajectory-post-node {
+  fill: #70c98b;
+}
+
+body.dark-mode .trajectory-desktop circle.trajectory-progress-node-1 {
+  fill: #83c98c;
+}
+
+body.dark-mode .trajectory-desktop circle.trajectory-progress-node-2 {
+  fill: #9fc995;
+}
+
+body.dark-mode .trajectory-desktop circle.trajectory-progress-node-3 {
+  fill: #bdbe9d;
+}
+
+body.dark-mode .trajectory-desktop circle.trajectory-progress-node-4 {
+  fill: #d3ad9f;
+}
+
+body.dark-mode .trajectory-desktop circle.trajectory-progress-node-5 {
+  fill: #e898aa;
 }
 
 body.dark-mode .trajectory-desktop text[fill="#222"] {
