@@ -374,20 +374,14 @@ body.dark-mode .research-journey {
   .journey-stage {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: auto 800px;
-    row-gap: 16px;
+    grid-template-rows: 800px;
     aspect-ratio: auto;
     height: auto;
     margin-top: 16px;
   }
 
   .journey-direction {
-    position: relative;
-    inset: auto;
-    grid-area: 1 / 1;
-    font-size: 18px;
-    line-height: 1.4;
-    transform: rotate(-5deg);
+    display: none;
   }
 
   .journey-desktop {
@@ -396,7 +390,7 @@ body.dark-mode .research-journey {
 
   .journey-mobile {
     position: relative;
-    grid-area: 2 / 1;
+    grid-area: 1 / 1;
     display: block;
     width: 80px;
     height: 800px;
@@ -405,7 +399,7 @@ body.dark-mode .research-journey {
 
   .journey-milestones {
     position: relative;
-    grid-area: 2 / 1;
+    grid-area: 1 / 1;
   }
 
   .journey-milestone {
