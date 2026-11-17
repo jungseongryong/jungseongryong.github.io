@@ -624,4 +624,28 @@ body.dark-mode .paperthumb {
     background: #f08ab5;
     border-color: #fff;
   }
+
+  .trajectory-mobile .trajectory-post-mobile::before {
+    background: #70c98b;
+  }
+
+  .trajectory-mobile .trajectory-progress-mobile-1::before {
+    background: #83c98c;
+  }
+
+  .trajectory-mobile .trajectory-progress-mobile-2::before {
+    background: #9fc995;
+  }
+
+  .trajectory-mobile .trajectory-progress-mobile-3::before {
+    background: #bdbe9d;
+  }
+
+  .trajectory-mobile .trajectory-progress-mobile-4::before {
+    background: #d3ad9f;
+  }
+
+  .trajectory-mobile .trajectory-progress-mobile-5::before {
+    background: #e898aa;
+  }
 }
