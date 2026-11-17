@@ -556,7 +556,7 @@ body.dark-mode .paperthumb {
     margin: 4px 0 0 8px;
     padding-left: 18px;
     border-left: 2px solid transparent;
-    border-image: linear-gradient(#ccc, #f08ab5) 1;
+    border-image: linear-gradient(#70c98b, #f08ab5) 1;
   }
 
   .trajectory-mobile div {
