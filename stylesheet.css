@@ -250,12 +250,14 @@ h2 {
 
 .journey-direction {
   position: absolute;
-  top: 18%;
-  left: 17%;
+  top: 68%;
+  left: 16.5%;
   margin: 0;
   color: var(--journey-green);
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 700;
+  transform: rotate(-12deg);
+  transform-origin: left bottom;
 }
 
 .journey-origin,
@@ -355,7 +357,7 @@ body.dark-mode .journey-glow {
 
 .journey-end .journey-role {
   order: -1;
-  font-size: 17px;
+  font-size: 18px;
   color: var(--journey-pink);
 }
 
@@ -383,8 +385,9 @@ body.dark-mode .research-journey {
     position: relative;
     inset: auto;
     grid-area: 1 / 1;
-    font-size: 14px;
+    font-size: 18px;
     line-height: 1.4;
+    transform: rotate(-8deg);
   }
 
   .journey-desktop {
