@@ -392,6 +392,13 @@ body.dark-mode .research-journey {
     inset: 0;
   }
 
+  /* Compensate for the taller mobile SVG viewport (600 vs. 470). */
+  .journey-desktop circle {
+    transform-box: fill-box;
+    transform-origin: center;
+    transform: scaleY(calc(470 / 600));
+  }
+
   .journey-direction {
     font-size: clamp(10px, 2.37cqw, 16px);
   }
