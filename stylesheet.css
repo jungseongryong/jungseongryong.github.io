@@ -279,6 +279,27 @@ h2 {
   stroke-dasharray: 1 9;
 }
 
+.journey-axis {
+  opacity: 0.25;
+  stroke-width: 2;
+}
+
+.journey-coil {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.journey-coil-back {
+  stroke-width: 2;
+  opacity: 0.26;
+}
+
+.journey-coil-front {
+  stroke-width: 4.5;
+  opacity: 0.95;
+}
+
 .journey-arrow {
   fill: var(--journey-pink);
 }
